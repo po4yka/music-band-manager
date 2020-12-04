@@ -16,7 +16,7 @@ fun HTML.index() {
     }
     body {
         div {
-            +"Hello from Ktor"
+            +"Hello from Ktor. Test message."
         }
     }
 }
