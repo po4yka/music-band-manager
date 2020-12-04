@@ -1,1 +1,1 @@
-web: build/install/MusicBandManager-1.0-SNAPSHOT/bin/MusicBandManager-1.0-SNAPSHOT
+web: build/install/MusicBandManager/bin/MusicBandManager
