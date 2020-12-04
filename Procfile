@@ -1,1 +1,1 @@
-web: build/install/kotlinserver/bin/kotlinserver
+web: build/install/MusicBand/bin/MusicBand
