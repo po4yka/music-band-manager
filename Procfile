@@ -1,1 +1,1 @@
-web: build/install/MusicBandManager/bin/MusicBandManager
+web: java -jar ./build/libs/MusicBandManager-1.0-SNAPSHOT.jar
