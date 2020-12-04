@@ -9,7 +9,6 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.html.*
-import java.text.DateFormat
 
 fun HTML.index() {
     head {
@@ -24,7 +23,7 @@ fun HTML.index() {
 
 fun main() {
     val port = System.getenv("PORT")?.toInt() ?: 49003
-    embeddedServer(Netty, port = port) {
+    embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             gson {
                 setPrettyPrinting()
