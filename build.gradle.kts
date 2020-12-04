@@ -38,3 +38,7 @@ tasks.withType<KotlinCompile>() {
 application {
     mainClassName = "ServerKt"
 }
+
+tasks.create("stage") {
+    dependsOn("installDist")
+}
