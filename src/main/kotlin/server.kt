@@ -22,7 +22,7 @@ fun HTML.index() {
 }
 
 fun main() {
-    val port = System.getenv("PORT")?.toInt() ?: 49003
+    val port = Integer.valueOf(System.getenv("PORT"))
     embeddedServer(Netty, port) {
         install(ContentNegotiation) {
             gson {

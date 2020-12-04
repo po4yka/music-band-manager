@@ -1,0 +1,5 @@
+{
+  "name": "Music Band Manager",
+  "description": "Simple client-server app for band managment",
+  "addons": [ "heroku-postgresql" ]
+}
