@@ -7,6 +7,13 @@ plugins {
     application
 }
 
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "11"
+    options.encoding = "UTF-8"
+}
+
+val mainClassName = "ServerKt"
+
 group = "me.po4yka"
 version = "1.0-SNAPSHOT"
 
@@ -33,6 +40,7 @@ dependencies {
 tasks.withType<ShadowJar>() {
     manifest {
         attributes["Main-Class"] = "ServerKt"
+        archiveClassifier.set("all")
     }
 }
 
@@ -50,4 +58,10 @@ application {
 
 tasks.create("stage") {
     dependsOn("installDist")
+}
+
+task<Jar>("dist") {
+    manifest {
+        attributes("Main-Class" to mainClassName)
+    }
 }
