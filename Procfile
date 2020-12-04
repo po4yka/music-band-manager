@@ -1,1 +1,1 @@
-web: build/install/MusicBand/bin/MusicBand
+web: ./build/install/MusicBandManager/bin/MusicBandManager
