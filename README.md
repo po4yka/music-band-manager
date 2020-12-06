@@ -5,5 +5,5 @@ List of technologies used:
 - PaaS: [Heroku](https://www.heroku.com/home)
 - Server side: [Ktor](https://ktor.io)
 - NIO client server framework: [Netty](https://netty.io)
-- BD: [PostgreSQL](https://www.postgresql.org)
+- BD: [SQLite](https://www.sqlite.org/index.html)
 - Client side: JS
