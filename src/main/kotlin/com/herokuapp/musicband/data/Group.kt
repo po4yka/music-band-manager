@@ -7,7 +7,7 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Groups : IntIdTable() {
     val groupName = varchar("group_name", 255)
-    val creationTime = long("creation_time")
+    val creationTime = varchar("creation_time", 255)
     val country = varchar("country", 255)
     val hitParadePlace = integer("hit_parade_place")
 }
