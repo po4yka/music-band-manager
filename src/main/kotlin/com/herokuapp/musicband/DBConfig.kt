@@ -19,7 +19,7 @@ fun Application.initDB() {
     val dataSource = HikariDataSource(dbConfig)
     Database.connect(dataSource)
     createTables()
-    LoggerFactory.getLogger(Application::class.simpleName).info("Initialized Database")
+    LoggerFactory.getLogger(Application::class.simpleName).debug("Initialized Database")
 }
 
 private fun createTables() = transaction {
