@@ -33,7 +33,7 @@ class GroupEntity(id: EntityID<Int>) : IntEntity(id) {
 
 data class Group(
   val groupName: String,
-  val creationTime: Long,
+  val creationTime: String,
   val country: String,
   val hitParadePlace: Int
 );
