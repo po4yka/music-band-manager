@@ -15,7 +15,6 @@ import io.ktor.routing.post
 import kotlinx.html.*
 import org.kodein.di.instance
 import org.kodein.di.ktor.di
-import org.slf4j.LoggerFactory
 
 fun HTML.index() {
     head {
@@ -38,8 +37,7 @@ fun Route.groups() {
 
     get("group") {
         val allBooks = groupService.getAllGroups()
-        println("GET group")
-        LoggerFactory.getLogger(Application::class.simpleName).debug("GET group")
+        println("GET all groups")
         call.respond(allBooks)
     }
 

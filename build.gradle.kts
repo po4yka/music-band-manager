@@ -43,7 +43,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.slf4j:slf4j-jdk14:1.7.30")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version") // default kotlin
     implementation("io.ktor:ktor-server-netty:$ktor_version")                 // netty server for ktor
     implementation("ch.qos.logback:logback-classic:$logback_version")         // logging
