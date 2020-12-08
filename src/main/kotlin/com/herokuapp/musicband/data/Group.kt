@@ -4,10 +4,12 @@ import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
+import org.jetbrains.exposed.sql.`java-time`.date
+import java.time.LocalDate
 
 object Groups : IntIdTable() {
     val groupName = varchar("group_name", 255)
-    val creationTime = varchar("creation_time", 255)
+    val creationTime = date("creation_time")
     val country = varchar("country", 255)
     val hitParadePlace = integer("hit_parade_place")
 }
@@ -32,8 +34,8 @@ class GroupEntity(id: EntityID<Int>) : IntEntity(id) {
 }
 
 data class Group(
-  val groupName: String,
-  val creationTime: String,
-  val country: String,
-  val hitParadePlace: Int
+    val groupName: String,
+    val creationTime: LocalDate,
+    val country: String,
+    val hitParadePlace: Int
 );
