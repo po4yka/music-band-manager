@@ -2,7 +2,7 @@ package com.herokuapp.musicband.routes
 
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.services.GroupService
-import io.ktor.application.call
+import io.ktor.application.*
 import io.ktor.features.NotFoundException
 import io.ktor.html.*
 import io.ktor.http.HttpStatusCode
@@ -15,6 +15,7 @@ import io.ktor.routing.post
 import kotlinx.html.*
 import org.kodein.di.instance
 import org.kodein.di.ktor.di
+import org.slf4j.LoggerFactory
 
 fun HTML.index() {
     head {
@@ -37,6 +38,8 @@ fun Route.groups() {
 
     get("group") {
         val allBooks = groupService.getAllGroups()
+        println("GET group")
+        LoggerFactory.getLogger(Application::class.simpleName).debug("GET group")
         call.respond(allBooks)
     }
 
