@@ -1,6 +1,7 @@
 package com.herokuapp.musicband
 
 import com.herokuapp.musicband.data.Groups
+import com.herokuapp.musicband.data.Performers
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.*
@@ -28,6 +29,7 @@ fun Application.initDB() {
 
 private fun createTables() = transaction {
     SchemaUtils.create(
-        Groups
+        Groups,
+        Performers
     )
 }

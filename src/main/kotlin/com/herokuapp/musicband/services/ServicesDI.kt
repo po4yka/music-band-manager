@@ -6,4 +6,5 @@ import org.kodein.di.singleton
 
 fun DI.MainBuilder.bindServices(){
     bind<GroupService>() with singleton { GroupService() }
+    bind<PerformerService>() with singleton { PerformerService() }
 }
