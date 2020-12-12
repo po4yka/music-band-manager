@@ -3,6 +3,7 @@ package com.herokuapp.musicband
 import com.herokuapp.musicband.data.Concerts
 import com.herokuapp.musicband.data.Groups
 import com.herokuapp.musicband.data.Performers
+import com.herokuapp.musicband.data.Repertoires
 import com.herokuapp.musicband.data.Songs
 import com.herokuapp.musicband.data.TourPrograms
 import com.zaxxer.hikari.HikariConfig
@@ -36,6 +37,7 @@ private fun createTables() = transaction {
         Performers,
         Songs,
         TourPrograms,
-        Concerts
+        Concerts,
+        Repertoires
     )
 }

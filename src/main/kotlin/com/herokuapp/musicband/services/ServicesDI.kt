@@ -10,4 +10,5 @@ fun DI.MainBuilder.bindServices() {
     bind<SongService>() with singleton { SongService() }
     bind<TourProgramService>() with singleton { TourProgramService() }
     bind<ConcertService>() with singleton { ConcertService() }
+    bind<RepertoireService>() with singleton { RepertoireService() }
 }
