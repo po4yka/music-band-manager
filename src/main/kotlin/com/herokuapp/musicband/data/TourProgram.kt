@@ -27,7 +27,7 @@ class TourProgramEntity(id: EntityID<Int>) : IntEntity(id) {
     var startDate by TourPrograms.startDate
     var endDate by TourPrograms.endDate
 
-    override fun toString(): String = "Group($name, $groupId, $startDate, $endDate)"
+    override fun toString(): String = "TourProgram($name, $groupId, $startDate, $endDate)"
 
     // transform Entity to a simple Kotlin data class
     fun toTourProgram() = TourProgram(name, groupId, startDate, endDate)
