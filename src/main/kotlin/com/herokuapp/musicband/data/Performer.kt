@@ -8,10 +8,10 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.`java-time`.date
 
 object Performers : IntIdTable() {
-    val fullName = varchar("group_name", 255)
-    val birthday = date("creation_time")
-    val group = varchar("country", 255)
-    val role = varchar("country", 255)
+    val fullName = varchar("full_name", 255)
+    val birthday = date("birthday")
+    val group = varchar("group", 255)
+    val role = varchar("role", 255)
 }
 
 /**
