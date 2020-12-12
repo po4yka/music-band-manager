@@ -2,8 +2,10 @@ package com.herokuapp.musicband.routes
 
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.data.Performer
+import com.herokuapp.musicband.data.Song
 import com.herokuapp.musicband.services.GroupService
 import com.herokuapp.musicband.services.PerformerService
+import com.herokuapp.musicband.services.SongService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
 import io.ktor.html.respondHtml
@@ -33,14 +35,15 @@ fun HTML.index() {
     }
 }
 
-fun Route.groups() {
-
-    val groupService by di().instance<GroupService>()
-    val performerService by di().instance<PerformerService>()
-
+fun Route.default() {
     get("/") {
         call.respondHtml(HttpStatusCode.OK, HTML::index)
     }
+}
+
+fun Route.groups() {
+
+    val groupService by di().instance<GroupService>()
 
     get("group") {
         val allBooks = groupService.getAllGroups()
@@ -59,6 +62,10 @@ fun Route.groups() {
         groupService.deleteGroup(bookId)
         call.respond(HttpStatusCode.OK)
     }
+}
+
+fun Route.performers() {
+    val performerService by di().instance<PerformerService>()
 
     get("performer") {
         val allPerformers = performerService.getAllPerformers()
@@ -75,6 +82,28 @@ fun Route.groups() {
     delete("performer/{id}") {
         val performerId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
         performerService.deletePerformer(performerId)
+        call.respond(HttpStatusCode.OK)
+    }
+}
+
+fun Route.songs() {
+    val songService by di().instance<SongService>()
+
+    get("song") {
+        val allSongs = songService.getAllSongs()
+        println("GET all songs")
+        call.respond(allSongs)
+    }
+
+    post("song") {
+        val songRequest = call.receive<Song>()
+        songService.addSong(songRequest)
+        call.respond(HttpStatusCode.Accepted)
+    }
+
+    delete("song/{id}") {
+        val songId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
+        songService.deleteSong(songId)
         call.respond(HttpStatusCode.OK)
     }
 }
