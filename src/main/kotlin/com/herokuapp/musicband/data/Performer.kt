@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.`java-time`.date
 object Performers : IntIdTable() {
     val fullName = varchar("full_name", 255)
     val birthday = date("birthday")
-    val group = varchar("group", 255)
+    val groupId = integer("group_id")
     val role = varchar("role", 255)
 }
 
@@ -24,18 +24,18 @@ class PerformerEntity(id: EntityID<Int>) : IntEntity(id) {
     // corresponding columns of the database table
     var fullName by Performers.fullName
     var birthday by Performers.birthday
-    var group by Performers.group
+    var groupId by Performers.groupId
     var role by Performers.role
 
-    override fun toString(): String = "Performer($fullName, $birthday, $group, $role)"
+    override fun toString(): String = "Performer($fullName, $birthday, $groupId, $role)"
 
     // transform Entity to a simple Kotlin data class
-    fun toPerformer() = Performer(fullName, birthday, group, role)
+    fun toPerformer() = Performer(fullName, birthday, groupId, role)
 }
 
 data class Performer(
     val fullName: String,
     val birthday: LocalDate,
-    val group: String,
+    val groupId: Int,
     val role: String
 )

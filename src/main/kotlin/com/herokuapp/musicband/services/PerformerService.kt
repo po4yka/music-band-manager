@@ -14,7 +14,7 @@ class PerformerService {
         PerformerEntity.new {
             this.fullName = performer.fullName
             this.birthday = performer.birthday
-            this.group = performer.group
+            this.groupId = performer.group
             this.role = performer.role
         }
     }
