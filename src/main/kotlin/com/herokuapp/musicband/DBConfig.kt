@@ -1,5 +1,6 @@
 package com.herokuapp.musicband
 
+import com.herokuapp.musicband.data.Concerts
 import com.herokuapp.musicband.data.Groups
 import com.herokuapp.musicband.data.Performers
 import com.herokuapp.musicband.data.Songs
@@ -34,6 +35,7 @@ private fun createTables() = transaction {
         Groups,
         Performers,
         Songs,
-        TourPrograms
+        TourPrograms,
+        Concerts
     )
 }

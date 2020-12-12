@@ -1,9 +1,11 @@
 package com.herokuapp.musicband.routes
 
+import com.herokuapp.musicband.data.Concert
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.data.Performer
 import com.herokuapp.musicband.data.Song
 import com.herokuapp.musicband.data.TourProgram
+import com.herokuapp.musicband.services.ConcertService
 import com.herokuapp.musicband.services.GroupService
 import com.herokuapp.musicband.services.PerformerService
 import com.herokuapp.musicband.services.SongService
@@ -128,6 +130,28 @@ fun Route.tourPrograms() {
     delete("tour-program/{id}") {
         val tourProgramId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
         tourProgramService.deleteTourProgram(tourProgramId)
+        call.respond(HttpStatusCode.OK)
+    }
+}
+
+fun Route.concerts() {
+    val concertService by di().instance<ConcertService>()
+
+    get("concert") {
+        val allConcerts = concertService.getAllConcerts()
+        println("GET all concerts")
+        call.respond(allConcerts)
+    }
+
+    post("concert") {
+        val concertRequest = call.receive<Concert>()
+        concertService.addConcert(concertRequest)
+        call.respond(HttpStatusCode.Accepted)
+    }
+
+    delete("concert/{id}") {
+        val concertId = call.parameters["id"]?.toIntOrNull() ?: throw NotFoundException()
+        concertService.deleteConcert(concertId)
         call.respond(HttpStatusCode.OK)
     }
 }

@@ -10,5 +10,6 @@ fun Routing.apiRoute() {
         performers()
         songs()
         tourPrograms()
+        concerts()
     }
 }
