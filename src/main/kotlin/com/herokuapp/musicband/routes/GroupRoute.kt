@@ -4,9 +4,9 @@ import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.data.Performer
 import com.herokuapp.musicband.services.GroupService
 import com.herokuapp.musicband.services.PerformerService
-import io.ktor.application.*
+import io.ktor.application.call
 import io.ktor.features.NotFoundException
-import io.ktor.html.*
+import io.ktor.html.respondHtml
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
 import io.ktor.response.respond
@@ -14,7 +14,11 @@ import io.ktor.routing.Route
 import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
-import kotlinx.html.*
+import kotlinx.html.HTML
+import kotlinx.html.body
+import kotlinx.html.div
+import kotlinx.html.head
+import kotlinx.html.title
 import org.kodein.di.instance
 import org.kodein.di.ktor.di
 

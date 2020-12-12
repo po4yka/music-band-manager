@@ -23,5 +23,4 @@ class GroupService {
     fun deleteGroup(groupId: Int) = transaction {
         GroupEntity[groupId].delete()
     }
-
 }

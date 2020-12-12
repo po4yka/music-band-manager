@@ -22,5 +22,4 @@ class PerformerService {
     fun deletePerformer(groupId: Int) = transaction {
         PerformerEntity[groupId].delete()
     }
-
 }

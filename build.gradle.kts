@@ -1,5 +1,5 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val kotlin_version: String by project
 val ktor_version: String by project
@@ -8,6 +8,7 @@ val exposed_version: String by project
 
 plugins {
     kotlin("jvm") version "1.4.10"
+    id("com.diffplug.spotless") version "5.8.2"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     application
 }
@@ -35,6 +36,7 @@ sourceSets.getByName("test") {
 }
 
 repositories {
+    google()
     jcenter()
     mavenCentral()
     maven { url = uri("https://dl.bintray.com/kotlin/kotlinx") }
@@ -44,11 +46,11 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version") // default kotlin
-    implementation("io.ktor:ktor-server-netty:$ktor_version")                 // netty server for ktor
-    implementation("ch.qos.logback:logback-classic:$logback_version")         // logging
-    implementation("io.ktor:ktor-server-core:$ktor_version")                  // ktor server
-    implementation("io.ktor:ktor-gson:$ktor_version")                         // gson for ktor
-    implementation("io.ktor:ktor-html-builder:$ktor_version")                 // html render
+    implementation("io.ktor:ktor-server-netty:$ktor_version") // netty server for ktor
+    implementation("ch.qos.logback:logback-classic:$logback_version") // logging
+    implementation("io.ktor:ktor-server-core:$ktor_version") // ktor server
+    implementation("io.ktor:ktor-gson:$ktor_version") // gson for ktor
+    implementation("io.ktor:ktor-html-builder:$ktor_version") // html render
     implementation("org.kodein.di:kodein-di-framework-ktor-server-jvm:7.0.0") // kodein for ktor
     implementation("com.github.jengelman.gradle.plugins:shadow:6.1.0")
 
@@ -63,6 +65,9 @@ dependencies {
 
     // JDBC Connector for PostgreSQL
     implementation("org.postgresql:postgresql:42.2.1")
+
+    // Spotless
+    implementation("com.diffplug.spotless:spotless-plugin-gradle:5.8.2")
 }
 
 tasks.withType<ShadowJar>() {
@@ -92,4 +97,38 @@ task<Jar>("dist") {
     manifest {
         attributes("Main-Class" to mainClassName)
     }
+}
+
+fun Project.getKtlintConfiguration(): Configuration {
+    return configurations.findByName("ktlint") ?: configurations.create("ktlint") {
+        val dependency = project.dependencies.create("com.pinterest:ktlint:0.36.0")
+        dependencies.add(dependency)
+    }
+}
+
+tasks.register<JavaExec>(name = "ktlint") {
+    group = "ktlint"
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = getKtlintConfiguration()
+    args("src/**/*.kt")
+}
+tasks.check {
+    dependsOn("ktlint")
+}
+
+tasks.register<JavaExec>(name = "ktlintFormat") {
+    group = "ktlint"
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = getKtlintConfiguration()
+    args("-F", "src/**/*.kt")
+}
+
+tasks.register<JavaExec>(name = "ktlintIntellij") {
+    group = "ktlint"
+    description = "Setup IntelliJ KTLint configuration."
+    classpath = getKtlintConfiguration()
+    main = "com.pinterest.ktlint.Main"
+    args("--apply-to-idea-project", "-y")
 }

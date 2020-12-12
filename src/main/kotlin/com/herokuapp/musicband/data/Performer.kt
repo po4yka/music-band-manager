@@ -1,11 +1,11 @@
 package com.herokuapp.musicband.data
 
+import java.time.LocalDate
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.`java-time`.date
-import java.time.LocalDate
 
 object Performers : IntIdTable() {
     val fullName = varchar("group_name", 255)

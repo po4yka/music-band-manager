@@ -1,11 +1,11 @@
 package com.herokuapp.musicband.data
 
+import java.time.LocalDate
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.`java-time`.date
-import java.time.LocalDate
 
 object Groups : IntIdTable() {
     val groupName = varchar("group_name", 255)
@@ -38,4 +38,4 @@ data class Group(
     val creationTime: LocalDate,
     val country: String,
     val hitParadePlace: Int
-);
+)
