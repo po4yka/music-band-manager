@@ -8,7 +8,7 @@ import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.`java-time`.date
 
 object Songs : IntIdTable() {
-    val name = varchar("group_name", 255)
+    val name = varchar("name", 255)
     val author = varchar("author", 255)
     val groupId = integer("group_id")
     val creationYear = date("creation_year")
