@@ -62,7 +62,7 @@ fun Route.groups() {
 
     get("performer") {
         val allPerformers = performerService.getAllPerformers()
-        println("GET all groups")
+        println("GET all performers")
         call.respond(allPerformers)
     }
 

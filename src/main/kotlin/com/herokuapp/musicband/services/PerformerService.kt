@@ -19,7 +19,7 @@ class PerformerService {
         }
     }
 
-    fun deletePerformer(groupId: Int) = transaction {
-        PerformerEntity[groupId].delete()
+    fun deletePerformer(performerId: Int) = transaction {
+        PerformerEntity[performerId].delete()
     }
 }
