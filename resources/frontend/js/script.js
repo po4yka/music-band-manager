@@ -27,7 +27,7 @@ function sendRequest(requestType, URL, data = "", sync = true,
 function updateTable(tableName) {
     switch (tableName) {
         case "groups":
-            sendRequest("GET", "/group", "", true, (text) => {
+            sendRequest("GET", "/api/v1/group", "", true, (text) => {
                 console.log("Callback for GET to /group");
                 console.log(`TEXT:\n${text}`)
             })
