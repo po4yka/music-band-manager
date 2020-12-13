@@ -6,6 +6,7 @@ import kotlinx.html.body
 import kotlinx.html.div
 import kotlinx.html.h1
 import kotlinx.html.head
+import kotlinx.html.onClick
 import kotlinx.html.script
 import kotlinx.html.styleLink
 import kotlinx.html.title
@@ -22,16 +23,25 @@ fun HTML.index() {
         }
         div(classes = "topnav") {
             a(classes = "active") {
-                href = "#home"
-                +"Home"
+                href = "#groups"
+                onClick = """updateTable("groups");"""
+                +"Groups"
             }
             a {
-                href = "#news"
-                +"News"
+                href = "#performers"
+                +"Performers"
             }
             a {
-                href = "#contact"
-                +"Contact"
+                href = "#songs"
+                +"Songs"
+            }
+            a {
+                href = "#tour-programs"
+                +"Tours"
+            }
+            a {
+                href = "#concerts"
+                +"Concerts"
             }
         }
     }
