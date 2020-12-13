@@ -13,8 +13,8 @@ import kotlinx.html.title
 fun HTML.index() {
     head {
         title("Music Band")
-        styleLink("resources/css/style.css")
-        script(src = "resources/js/script.js") {}
+        styleLink("/resources/frontend/css/style.css")
+        script(src = "/resources/frontend/js/script.js") {}
     }
     body {
         h1 {
