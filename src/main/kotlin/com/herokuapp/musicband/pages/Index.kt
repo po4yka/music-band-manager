@@ -6,9 +6,11 @@ import kotlinx.html.body
 import kotlinx.html.div
 import kotlinx.html.h1
 import kotlinx.html.head
+import kotlinx.html.id
 import kotlinx.html.onClick
 import kotlinx.html.script
 import kotlinx.html.styleLink
+import kotlinx.html.table
 import kotlinx.html.title
 
 fun HTML.index() {
@@ -43,6 +45,9 @@ fun HTML.index() {
                 href = "#concerts"
                 +"Concerts"
             }
+        }
+        table(classes = "table-fill") {
+            id = "dataTable"
         }
     }
 }
