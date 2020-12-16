@@ -36,22 +36,25 @@ function updateTable(tableName) {
             columnCount = 4
             sendRequest("GET", "/api/v1/group", "", true, (text) => {
                 console.log("Callback for GET to /group");
-                let table = document.getElementById("dataTable")
-                let header = table.createTHead();
-                let row = header.insertRow(0);
+                const table = document.getElementById("dataTable")
+
+                const header = table.createTHead();
+                const row = header.insertRow(0);
                 for (let i = 0; i < columnCount; ++i) {
                     let cell = row.insertCell(0);
                     cell.innerHTML = `<th class='text-left'>${tableHeader[i]}</th>>`
                 }
-                let tableInfo = JSON.parse(text)
+
+                const tableInfo = JSON.parse(text);
+                const tBody = table.getElementsByTagName('tbody')[0];
                 for (let i = 0; i < tableInfo.length; ++i) {
-                    let row = table.insertRow(i);
+                    let tBodyRow = tBody.insertRow(i);
                     const cells = []
                     for (let j = 0; j < columnCount; ++j) {
-                        cells[j] = row.insertCell(j);
+                        cells[j] = tBodyRow.insertCell(j);
                     }
                     cells[0].innerHTML = tableInfo[i].groupName
-                    cells[1].innerHTML = tableInfo[i].creationTime
+                    cells[1].innerHTML = `${tableInfo[i].creationTime.day}-${tableInfo[i].creationTime.month}-${tableInfo[i].creationTime.year}`
                     cells[2].innerHTML = tableInfo[i].country
                     cells[3].innerHTML = tableInfo[i].hitParadePlace
                 }
