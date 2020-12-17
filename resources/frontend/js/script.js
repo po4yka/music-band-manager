@@ -1,6 +1,3 @@
-// FIXME: default table show
-updateTable("groups");
-
 function sendRequest(requestType, URL, data = "", sync = true,
                      callback = (text) => {
                          console.log(text);
@@ -81,7 +78,8 @@ function changeActiveTopNav(tableName) {
     const navSectionNewActive = document.getElementById(tableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
     console.log(`navSectionNewActive: ${navSectionNewActive}; navSectionOldActive: ${navSectionOldActive}, ${navSectionOldActive.classList}`);
-    navSectionOldActive.classList.remove("active");
+    // FIXME: theoretically we can have more than 1 element
+    navSectionOldActive.classList[0].remove("active");
     navSectionNewActive.classList.add("active");
 }
 
@@ -124,3 +122,6 @@ function updateTable(tableName) {
             break;
     }
 }
+
+// FIXME: default table show
+updateTable("groups");
