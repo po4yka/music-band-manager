@@ -42,12 +42,14 @@ function updateTable(tableName) {
                 const row = header.insertRow(0);
                 for (let i = 0; i < columnCount; ++i) {
                     let cell = row.insertCell(i);
-                    cell.innerHTML = `<th class='text-left'>${tableHeader[i]}</th>>`
+                    cell.innerHTML = `<th class='text-left'>${tableHeader[i]}</th>`;
                 }
 
                 const tableInfo = JSON.parse(text);
+                console.log(tableInfo);
+                const tblBody = document.createElement('tbody');
                 for (let i = 0; i < tableInfo.length; ++i) {
-                    let tRow = table.insertRow(i);
+                    let tRow = document.createElement("tr");
                     const cells = []
                     for (let j = 0; j < columnCount; ++j) {
                         cells[j] = tRow.insertCell(j);
@@ -57,6 +59,9 @@ function updateTable(tableName) {
                     cells[2].innerHTML = tableInfo[i].country
                     cells[3].innerHTML = tableInfo[i].hitParadePlace
                 }
+
+                tblBody.appendChild(row);
+                table.appendChild(tblBody);
             })
     }
 }
