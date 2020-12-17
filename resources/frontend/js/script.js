@@ -43,6 +43,7 @@ function generateTableHead(table, tableHeaderData) {
  * @param tableInfo
  */
 function generateGroupTable(table, tableInfo) {
+    const columnCount = 4
     for (let element of tableInfo) {
         let tRow = document.createElement("tr");
         const cells = []
@@ -62,10 +63,8 @@ function generateGroupTable(table, tableInfo) {
  */
 function updateTable(tableName) {
     let groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
-    let columnCount = 0
     switch (tableName) {
         case "groups":
-            columnCount = 4
             sendRequest("GET", "/api/v1/group", "", true, (text) => {
                 console.log("Callback for GET to /group");
                 const table = document.getElementById('dataTable')
