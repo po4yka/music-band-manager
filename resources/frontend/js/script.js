@@ -50,10 +50,10 @@ function generateGroupTable(table, tableInfo) {
         for (let j = 0; j < columnCount; ++j) {
             cells[j] = tRow.insertCell(j);
         }
-        cells[0].innerHTML = tableInfo[i].groupName
-        cells[1].innerHTML = `${tableInfo[i].creationTime.day}/${tableInfo[i].creationTime.month}/${tableInfo[i].creationTime.year}`
-        cells[2].innerHTML = tableInfo[i].country
-        cells[3].innerHTML = tableInfo[i].hitParadePlace
+        cells[0].innerHTML = element.groupName
+        cells[1].innerHTML = `${element.creationTime.day}/${element.creationTime.month}/${element.creationTime.year}`
+        cells[2].innerHTML = element.country
+        cells[3].innerHTML = element.hitParadePlace
     }
 }
 
