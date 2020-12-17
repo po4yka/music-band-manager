@@ -36,7 +36,7 @@ function updateTable(tableName) {
             columnCount = 4
             sendRequest("GET", "/api/v1/group", "", true, (text) => {
                 console.log("Callback for GET to /group");
-                const table = document.getElementById("dataTable")
+                const table = document.getElementById('dataTable')
 
                 const header = table.createTHead();
                 const row = header.insertRow(0);
@@ -47,11 +47,12 @@ function updateTable(tableName) {
 
                 const tableInfo = JSON.parse(text);
                 const tBody = table.getElementsByTagName('tbody')[0];
+                console.log(`TBODY: ${tBody}`);
                 for (let i = 0; i < tableInfo.length; ++i) {
-                    let tBodyRow = tBody.insertRow(i);
+                    let tBodyRow = tBody.insertRow();
                     const cells = []
                     for (let j = 0; j < columnCount; ++j) {
-                        cells[j] = tBodyRow.insertCell(j);
+                        cells[j] = tBodyRow.insertCell();
                     }
                     cells[0].innerHTML = tableInfo[i].groupName
                     cells[1].innerHTML = `${tableInfo[i].creationTime.day}-${tableInfo[i].creationTime.month}-${tableInfo[i].creationTime.year}`
