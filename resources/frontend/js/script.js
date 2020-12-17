@@ -104,8 +104,11 @@ function cleanTable(table) {
         const theadRef = table.getElementsByTagName("thead");
         const bodyRef = table.getElementsByTagName("tbody");
         if (theadRef.length > 0 && bodyRef.length > 0) {
-            theadRef[0] = document.createElement('thead');
-            bodyRef[0] = document.createElement('tbody');
+            console.log("Recreating of table header and body");
+            table.removeChild(theadRef[0]);
+            table.removeChild(bodyRef[0]);
+            table.appendChild(document.createElement('thead'));
+            table.appendChild(document.createElement('tbody'));
         }
     }
 }
