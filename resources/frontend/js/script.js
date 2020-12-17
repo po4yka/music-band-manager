@@ -21,47 +21,59 @@ function sendRequest(requestType, URL, data = "", sync = true,
 }
 
 /**
+ * Generate header of table
+ * @param table
+ * @param tableHeaderData
+ */
+function generateTableHead(table, tableHeaderData) {
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+    for (let key of tableHeaderData) {
+        let th = document.createElement('th');
+        th.classList.add('text-left');
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        row.appendChild(th);
+    }
+}
+
+/**
+ * Generate body of Group table
+ * @param table
+ * @param tableInfo
+ */
+function generateGroupTable(table, tableInfo) {
+    for (let element of tableInfo) {
+        let tRow = document.createElement("tr");
+        const cells = []
+        for (let j = 0; j < columnCount; ++j) {
+            cells[j] = tRow.insertCell(j);
+        }
+        cells[0].innerHTML = tableInfo[i].groupName
+        cells[1].innerHTML = `${tableInfo[i].creationTime.day}/${tableInfo[i].creationTime.month}/${tableInfo[i].creationTime.year}`
+        cells[2].innerHTML = tableInfo[i].country
+        cells[3].innerHTML = tableInfo[i].hitParadePlace
+    }
+}
+
+/**
  * Redraw table based on menu option
  * @param tableName: string
  */
 function updateTable(tableName) {
-    let tableHeader = []
+    let groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
     let columnCount = 0
     switch (tableName) {
         case "groups":
-            tableHeader[0] = "Group"
-            tableHeader[1] = "Creation time"
-            tableHeader[2] = "Country"
-            tableHeader[3] = "Hit parade place"
             columnCount = 4
             sendRequest("GET", "/api/v1/group", "", true, (text) => {
                 console.log("Callback for GET to /group");
                 const table = document.getElementById('dataTable')
 
-                const header = table.createTHead();
-                const row = header.insertRow(0);
-                for (let i = 0; i < columnCount; ++i) {
-                    let cell = row.insertCell(i);
-                    cell.innerHTML = `<th class='text-left'>${tableHeader[i]}</th>`;
-                }
-
                 const tableInfo = JSON.parse(text);
                 console.log(tableInfo);
-                const tblBody = document.createElement('tbody');
-                for (let i = 0; i < tableInfo.length; ++i) {
-                    let tRow = document.createElement("tr");
-                    const cells = []
-                    for (let j = 0; j < columnCount; ++j) {
-                        cells[j] = tRow.insertCell(j);
-                    }
-                    cells[0].innerHTML = tableInfo[i].groupName
-                    cells[1].innerHTML = `${tableInfo[i].creationTime.day}-${tableInfo[i].creationTime.month}-${tableInfo[i].creationTime.year}`
-                    cells[2].innerHTML = tableInfo[i].country
-                    cells[3].innerHTML = tableInfo[i].hitParadePlace
-                }
-
-                tblBody.appendChild(row);
-                table.appendChild(tblBody);
+                generateGroupTable(table, tableInfo);
+                generateTableHead(table, groupTblHeader);
             })
     }
 }
