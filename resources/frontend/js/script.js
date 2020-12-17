@@ -45,7 +45,7 @@ function generateTableHead(table, tableHeaderData) {
 function generateGroupTable(table, tableInfo) {
     const columnCount = 4
     for (let element of tableInfo) {
-        let tRow = document.createElement("tr");
+        let tRow = table.insertRow();
         const cells = []
         for (let j = 0; j < columnCount; ++j) {
             cells[j] = tRow.insertCell(j);
