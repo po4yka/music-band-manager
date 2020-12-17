@@ -25,24 +25,33 @@ fun HTML.index() {
         }
         div(classes = "topnav") {
             a(classes = "active") {
+                id = "groupsNav"
                 href = "#groups"
                 onClick = """updateTable("groups");"""
                 +"Groups"
             }
             a {
+                id = "performersNav"
                 href = "#performers"
+                onClick = """updateTable("performers");"""
                 +"Performers"
             }
             a {
+                id = "songsNav"
                 href = "#songs"
+                onClick = """updateTable("songs");"""
                 +"Songs"
             }
             a {
+                id = "tour-programsNav"
                 href = "#tour-programs"
+                onClick = """updateTable("tour-programs);"""
                 +"Tours"
             }
             a {
+                id = "concertsNav"
                 href = "#concerts"
+                onClick = """updateTable("concerts);"""
                 +"Concerts"
             }
         }
