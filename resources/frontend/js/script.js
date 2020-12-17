@@ -95,13 +95,17 @@ function changeActiveTopNav(tableName) {
     if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
 }
 
+/**
+ * Delete table header and body
+ * @param table
+ */
 function cleanTable(table) {
     if (table !== null) {
         const theadRef = table.getElementsByTagName("thead");
         const bodyRef = table.getElementsByTagName("tbody");
         if (theadRef.length > 0 && bodyRef.length > 0) {
-            table.removeChild(theadRef[0]);
-            table.removeChild(bodyRef[0]);
+            theadRef[0] = document.createElement('thead');
+            bodyRef[0] = document.createElement('tbody');
         }
     }
 }
@@ -111,8 +115,9 @@ function cleanTable(table) {
  * @param tableName: string
  */
 function updateTable(tableName) {
-    changeActiveTopNav(tableName);
     const table = document.getElementById('dataTable');
+    if (table === null) return;
+    changeActiveTopNav(tableName);
     cleanTable(table);
     switch (tableName) {
         case "groups":
