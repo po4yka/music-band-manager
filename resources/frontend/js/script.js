@@ -96,11 +96,13 @@ function changeActiveTopNav(tableName) {
 }
 
 function cleanTable(table) {
-    const theadRef = table.getElementsByTagName("thead");
-    const bodyRef = table.getElementsByTagName("tbody");
-    if (theadRef.length > 0 && bodyRef.length > 0) {
-        table.removeChild(theadRef[0]);
-        table.removeChild(bodyRef[0]);
+    if (table !== null) {
+        const theadRef = table.getElementsByTagName("thead");
+        const bodyRef = table.getElementsByTagName("tbody");
+        if (theadRef.length > 0 && bodyRef.length > 0) {
+            table.removeChild(theadRef[0]);
+            table.removeChild(bodyRef[0]);
+        }
     }
 }
 
