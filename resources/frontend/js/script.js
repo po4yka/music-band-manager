@@ -32,6 +32,7 @@ function sendRequest(requestType, URL, data = "", sync = true,
  * @param tableHeaderData
  */
 function generateTableHead(table, tableHeaderData) {
+    console.log("generateTableHead was called");
     let thead = table.createTHead();
     let row = thead.insertRow();
     for (let key of tableHeaderData) {
@@ -50,6 +51,7 @@ function generateTableHead(table, tableHeaderData) {
  * @param element
  */
 function fillCells(tableName, cells, element) {
+    console.log("fillCells was called");
     switch (tableName) {
         case "groups":
             cells[0].innerHTML = element.groupName;
@@ -73,6 +75,7 @@ function fillCells(tableName, cells, element) {
 }
 
 function generateTableBody(tableName, table, tableInfo, columnCount) {
+    console.log("generateTableBody was called");
     for (let element of tableInfo) {
         let tRow = table.insertRow();
         const cells = []
@@ -118,6 +121,7 @@ function cleanTable(table) {
  * @param tableName: string
  */
 function updateTable(tableName) {
+    console.log("updateTable was called");
     const table = document.getElementById('dataTable');
     if (table === null) return;
     changeActiveTopNav(tableName);
