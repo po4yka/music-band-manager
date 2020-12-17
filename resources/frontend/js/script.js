@@ -1,3 +1,10 @@
+let groupsData = null;
+let performersData = null;
+let songsData = null;
+let repertoiresData = null;
+let tourProgramsData = null;
+let concertsData = null;
+
 function sendRequest(requestType, URL, data = "", sync = true,
                      callback = (text) => {
                          console.log(text);
@@ -36,6 +43,12 @@ function generateTableHead(table, tableHeaderData) {
     }
 }
 
+/**
+ * Fill cells of table based on this name
+ * @param tableName
+ * @param cells
+ * @param element
+ */
 function fillCells(tableName, cells, element) {
     switch (tableName) {
         case "groups":
@@ -82,36 +95,44 @@ function changeActiveTopNav(tableName) {
     if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
 }
 
+function cleanTable(table) {
+    table.deleteTHead();
+    // Remove first instance of body
+    table.removeChild(table.getElementsByTagName("tbody")[0]);
+}
+
 /**
  * Redraw table based on menu option
  * @param tableName: string
  */
 function updateTable(tableName) {
     changeActiveTopNav(tableName);
+    const table = document.getElementById('dataTable');
+    cleanTable(table);
     switch (tableName) {
         case "groups":
             const groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
-            sendRequest("GET", "/api/v1/group", "", true, (text) => {
-                console.log("Callback for GET to /group");
-                const table = document.getElementById('dataTable')
+            if (groupsData === null) {
+                sendRequest("GET", "/api/v1/group", "", true, (text) => {
+                    console.log("Callback for GET to /group");
 
-                const tableInfo = JSON.parse(text);
-                console.log(tableInfo);
-                generateTableBody(tableName, table, tableInfo, 4);
-                generateTableHead(table, groupTblHeader);
-            })
+                    groupsData = JSON.parse(text);
+                    console.log(groupsData);
+                })
+            }
+            generateTableBody(tableName, table, groupsData, 4);
+            generateTableHead(table, groupTblHeader);
             break;
         case "performers":
             const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
             sendRequest("GET", "/api/v1/performer", "", true, (text) => {
                 console.log("Callback for GET to /performer");
-                const table = document.getElementById('dataTable')
 
-                const tableInfo = JSON.parse(text);
-                console.log(tableInfo);
-                generateTableBody(tableName, table, tableInfo, 4);
-                generateTableHead(table, performerTblHeader, 4);
+                performersData = JSON.parse(text);
+                console.log(performersData);
             })
+            generateTableBody(tableName, table, performersData, 4);
+            generateTableHead(table, performerTblHeader, 4);
             break;
         case "songs":
             break;
