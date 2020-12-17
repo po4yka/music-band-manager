@@ -77,10 +77,9 @@ function generateTableBody(tableName, table, tableInfo, columnCount) {
 function changeActiveTopNav(tableName) {
     const navSectionNewActive = document.getElementById(tableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
-    console.log(`navSectionNewActive: ${navSectionNewActive}; navSectionOldActive: ${navSectionOldActive}, ${navSectionOldActive.classList}`);
     // FIXME: theoretically we can have more than 1 element
-    navSectionOldActive.classList[0].remove("active");
-    navSectionNewActive.classList.add("active");
+    if (navSectionOldActive.length > 0) { navSectionOldActive[0].classList.remove("active"); }
+    if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
 }
 
 /**
