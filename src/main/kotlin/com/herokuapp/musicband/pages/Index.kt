@@ -17,7 +17,7 @@ fun HTML.index() {
     head {
         title("Music Band")
         styleLink("/static/style.css")
-        script(src = "/static/script.js") {}
+        script(src = "/static/script.js") {defer}
     }
     body {
         h1 {
