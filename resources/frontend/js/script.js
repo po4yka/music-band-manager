@@ -46,13 +46,13 @@ function updateTable(tableName) {
                 }
 
                 const tableInfo = JSON.parse(text);
-                const tBody = table.getElementsByTagName('tbody')[0];
-                console.log(`TBODY: ${tBody}`);
+                // const tBody = table.getElementsByTagName('tbody')[0];
+                // console.log(`TBODY: ${tBody}`);
                 for (let i = 0; i < tableInfo.length; ++i) {
-                    let tBodyRow = tBody.insertRow();
+                    let tBodyRow = table.insertRow(i);
                     const cells = []
                     for (let j = 0; j < columnCount; ++j) {
-                        cells[j] = tBodyRow.insertCell();
+                        cells[j] = tBodyRow.insertCell(j);
                     }
                     cells[0].innerHTML = tableInfo[i].groupName
                     cells[1].innerHTML = `${tableInfo[i].creationTime.day}-${tableInfo[i].creationTime.month}-${tableInfo[i].creationTime.year}`
