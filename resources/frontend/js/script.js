@@ -41,18 +41,16 @@ function updateTable(tableName) {
                 const header = table.createTHead();
                 const row = header.insertRow(0);
                 for (let i = 0; i < columnCount; ++i) {
-                    let cell = row.insertCell(0);
+                    let cell = row.insertCell(i);
                     cell.innerHTML = `<th class='text-left'>${tableHeader[i]}</th>>`
                 }
 
                 const tableInfo = JSON.parse(text);
-                // const tBody = table.getElementsByTagName('tbody')[0];
-                // console.log(`TBODY: ${tBody}`);
                 for (let i = 0; i < tableInfo.length; ++i) {
-                    let tBodyRow = table.insertRow(i);
+                    let tRow = table.insertRow(i);
                     const cells = []
                     for (let j = 0; j < columnCount; ++j) {
-                        cells[j] = tBodyRow.insertCell(j);
+                        cells[j] = tRow.insertCell(j);
                     }
                     cells[0].innerHTML = tableInfo[i].groupName
                     cells[1].innerHTML = `${tableInfo[i].creationTime.day}-${tableInfo[i].creationTime.month}-${tableInfo[i].creationTime.year}`
