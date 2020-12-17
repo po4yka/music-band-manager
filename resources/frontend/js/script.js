@@ -80,6 +80,7 @@ function generateTableBody(tableName, table, tableInfo, columnCount) {
 function changeActiveTopNav(tableName) {
     const navSectionNewActive = document.getElementById(tableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
+    console.log(`navSectionNewActive: ${navSectionNewActive}; navSectionOldActive: ${navSectionOldActive}, ${navSectionOldActive.classList}`);
     navSectionOldActive.classList.remove("active");
     navSectionNewActive.classList.add("active");
 }
