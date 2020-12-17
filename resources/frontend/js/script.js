@@ -123,21 +123,32 @@ function updateTable(tableName) {
 
                     groupsData = JSON.parse(text);
                     console.log(groupsData);
-                })
+
+                    // FIXME: delete duplicate lines
+                    generateTableBody(tableName, table, groupsData, 4);
+                    generateTableHead(table, groupTblHeader);
+                });
+            } else {
+                generateTableBody(tableName, table, groupsData, 4);
+                generateTableHead(table, groupTblHeader);
             }
-            generateTableBody(tableName, table, groupsData, 4);
-            generateTableHead(table, groupTblHeader);
             break;
         case "performers":
             const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
-            sendRequest("GET", "/api/v1/performer", "", true, (text) => {
-                console.log("Callback for GET to /performer");
+            if (performersData === null) {
+                sendRequest("GET", "/api/v1/performer", "", true, (text) => {
+                    console.log("Callback for GET to /performer");
 
-                performersData = JSON.parse(text);
-                console.log(performersData);
-            })
-            generateTableBody(tableName, table, performersData, 4);
-            generateTableHead(table, performerTblHeader, 4);
+                    performersData = JSON.parse(text);
+                    console.log(performersData);
+
+                    generateTableBody(tableName, table, performersData, 4);
+                    generateTableHead(table, performerTblHeader, 4);
+                });
+            } else {
+                generateTableBody(tableName, table, performersData, 4);
+                generateTableHead(table, performerTblHeader, 4);
+            }
             break;
         case "songs":
             break;
