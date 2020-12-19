@@ -39,3 +39,10 @@ data class TourProgram(
     val startDate: LocalDate,
     val endDate: LocalDate
 )
+
+data class TourProgramOut(
+    val name: String,
+    val groupName: String,
+    val startDate: LocalDate,
+    val endDate: LocalDate
+)

@@ -18,7 +18,7 @@ fun Route.tourPrograms() {
     val tourProgramService by di().instance<TourProgramService>()
 
     get("tour-program") {
-        val allTourPrograms = tourProgramService.getAllTourPrograms()
+        val allTourPrograms = tourProgramService.getAllTourProgramsOut()
         println("GET all tour programs")
         call.respond(allTourPrograms)
     }

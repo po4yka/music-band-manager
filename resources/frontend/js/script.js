@@ -8,6 +8,7 @@ let concertsData = null;
 const groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
 const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
 const songTblHeader = ["Name", "Author", "Group", "Creation year", "Composer"];
+const tourProgramTblHeader = ["Name", "Group", "Start", "End"];
 
 function sendRequest(requestType, URL, data = "", sync = true,
                      callback = (text) => {
@@ -77,6 +78,10 @@ function fillCells(tableName, cells, element) {
             cells[4].innerHTML = element.composer;
             break;
         case "tour-programs":
+            cells[0].innerHTML = element.name;
+            cells[1].innerHTML = element.groupName;
+            cells[2].innerHTML = `${element.startDate.day}/${element.startDate.month}/${element.startDate.year}`;
+            cells[3].innerHTML = `${element.endDate.day}/${element.endDate.month}/${element.endDate.year}`;
             break;
         case "concerts":
             break;
@@ -186,6 +191,20 @@ function updateTable(tableName) {
             }
             break;
         case "tour-programs":
+            if (tourProgramsData === null) {
+                sendRequest("GET", "/api/v1/tour-program", "", true, (text) => {
+                    console.log("Callback for GET to /song");
+
+                    tourProgramsData = JSON.parse(text);
+                    console.log(tourProgramsData);
+
+                    generateTableBody(tableName, table, tourProgramsData, 5);
+                    generateTableHead(table, tourProgramTblHeader, 5);
+                });
+            } else {
+                generateTableBody(tableName, table, tourProgramsData, 4);
+                generateTableHead(table, performerTblHeader, 4);
+            }
             break;
         case "concerts":
             break;
