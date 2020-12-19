@@ -9,6 +9,7 @@ const groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"]
 const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
 const songTblHeader = ["Name", "Author", "Group", "Creation year", "Composer"];
 const tourProgramTblHeader = ["Name", "Group", "Start", "End"];
+const concertTblHeader = ["Tour name", "Group", "Date/Time", "Place", "Tickets sold", "Ticket cost", "Rent cost"];
 
 function sendRequest(requestType, URL, data = "", sync = true,
                      callback = (text) => {
@@ -84,6 +85,13 @@ function fillCells(tableName, cells, element) {
             cells[3].innerHTML = `${element.endDate.day}/${element.endDate.month}/${element.endDate.year}`;
             break;
         case "concerts":
+            cells[0].innerHTML = element.tourProgramName;
+            cells[1].innerHTML = element.groupName;
+            cells[2].innerHTML = `${element.dateTime.day}/${element.dateTime.month}/${element.dateTime.year} ${element.dateTime.hour}:${element.dateTime.minute}`;
+            cells[3].innerHTML = element.place;
+            cells[4].innerHTML = element.ticketsCount;
+            cells[5].innerHTML = element.hallRentalCost;
+            cells[6].innerHTML = element.ticketCost;
             break;
     }
 }
@@ -198,8 +206,8 @@ function updateTable(tableName) {
                     tourProgramsData = JSON.parse(text);
                     console.log(tourProgramsData);
 
-                    generateTableBody(tableName, table, tourProgramsData, 5);
-                    generateTableHead(table, tourProgramTblHeader, 5);
+                    generateTableBody(tableName, table, tourProgramsData, 4);
+                    generateTableHead(table, tourProgramTblHeader, 4);
                 });
             } else {
                 generateTableBody(tableName, table, tourProgramsData, 4);
@@ -207,6 +215,20 @@ function updateTable(tableName) {
             }
             break;
         case "concerts":
+            if (concertsData === null) {
+                sendRequest("GET", "/api/v1/concert", "", true, (text) => {
+                    console.log("Callback for GET to /concert");
+
+                    concertsData = JSON.parse(text);
+                    console.log(concertsData);
+
+                    generateTableBody(tableName, table, concertsData, 7);
+                    generateTableHead(table, tourProgramTblHeader, 7);
+                });
+            } else {
+                generateTableBody(tableName, table, concertsData, 7);
+                generateTableHead(table, concertTblHeader, 7);
+            }
             break;
     }
 }

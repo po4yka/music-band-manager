@@ -18,7 +18,7 @@ fun Route.concerts() {
     val concertService by di().instance<ConcertService>()
 
     get("concert") {
-        val allConcerts = concertService.getAllConcerts()
+        val allConcerts = concertService.getAllOutConcerts()
         println("GET all concerts")
         call.respond(allConcerts)
     }

@@ -45,3 +45,13 @@ data class Concert(
     var hallRentalCost: Int,
     var ticketCost: Int
 )
+
+data class ConcertOut(
+    var tourProgramName: String,
+    var groupName: String,
+    val dateTime: LocalDate,
+    var place: String,
+    var ticketsCount: Int,
+    var hallRentalCost: Int,
+    var ticketCost: Int
+)
