@@ -223,7 +223,7 @@ function updateTable(tableName) {
                     console.log(concertsData);
 
                     generateTableBody(tableName, table, concertsData, 7);
-                    generateTableHead(table, tourProgramTblHeader, 7);
+                    generateTableHead(table, concertTblHeader, 7);
                 });
             } else {
                 generateTableBody(tableName, table, concertsData, 7);
