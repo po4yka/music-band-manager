@@ -19,7 +19,7 @@ fun Route.performers() {
 
     get("performer") {
         val allPerformers = performerService.getAllPerformers()
-        println("GET all performers")
+        println("GET all performers ${allPerformers::class.qualifiedName}\n$allPerformers")
         call.respond(allPerformers)
     }
 
