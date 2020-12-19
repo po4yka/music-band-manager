@@ -62,7 +62,7 @@ function fillCells(tableName, cells, element) {
         case "performers":
             cells[0].innerHTML = element.fullName;
             cells[1].innerHTML = `${element.birthday.day}/${element.birthday.month}/${element.birthday.year}`;
-            cells[2].innerHTML = element.groupId;
+            cells[2].innerHTML = element.groupName;
             cells[3].innerHTML = element.role;
             break;
         case "songs":

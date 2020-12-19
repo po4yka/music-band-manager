@@ -1,13 +1,30 @@
 package com.herokuapp.musicband.services
 
+import com.herokuapp.musicband.data.Groups
 import com.herokuapp.musicband.data.Performer
 import com.herokuapp.musicband.data.PerformerEntity
+import com.herokuapp.musicband.data.PerformerOut
+import com.herokuapp.musicband.data.Performers
+import org.jetbrains.exposed.sql.JoinType
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class PerformerService {
 
     fun getAllPerformers(): Iterable<Performer> = transaction {
         PerformerEntity.all().map(PerformerEntity::toPerformer)
+    }
+
+    fun getPerformersWithGroups(): Iterable<PerformerOut> = transaction {
+        Performers.join(Groups, JoinType.INNER, additionalConstraint = { Performers.groupId eq Groups.id })
+            .slice(Performers.fullName, Performers.birthday, Performers.role, Groups.groupName)
+            .selectAll()
+            .map { PerformerOut(
+                it[Performers.fullName],
+                it[Performers.birthday],
+                it[Performers.role],
+                it[Groups.groupName])
+            }
     }
 
     fun addPerformer(performer: Performer) = transaction {

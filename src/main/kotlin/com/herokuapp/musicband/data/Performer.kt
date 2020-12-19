@@ -14,6 +14,13 @@ object Performers : IntIdTable() {
     val role = varchar("role", 255)
 }
 
+// object PerformersOut : IntIdTable() {
+//     val fullName = varchar("full_name", 255)
+//     val birthday = date("birthday")
+//     val role = varchar("role", 255)
+//     val groupName = varchar("group_name", 255)
+// }
+
 /**
  * Represents row in a table
  */
@@ -30,12 +37,50 @@ class PerformerEntity(id: EntityID<Int>) : IntEntity(id) {
     override fun toString(): String = "Performer($fullName, $birthday, $groupId, $role)"
 
     // transform Entity to a simple Kotlin data class
-    fun toPerformer() = Performer(fullName, birthday, groupId, role)
+    fun toPerformer() = Performer(fullName, birthday, role, groupId)
+
+    fun toPerformerOut(groupName: String) = PerformerOut(fullName, birthday, role, groupName)
 }
 
-data class Performer(
-    val fullName: String,
-    val birthday: LocalDate,
-    val groupId: Int,
-    val role: String
+// class PerformerOutEntity(id: EntityID<Int>) : IntEntity(id) {
+//     companion object : IntEntityClass<PerformerEntity>(Performers)
+//
+//     var fullName by PerformersOut.fullName
+//     var birthday by PerformersOut.birthday
+//     var role by PerformersOut.role
+//     var groupName by PerformersOut.groupName
+//
+//     override fun toString(): String = "Performer($fullName, $birthday, $groupName, $role)"
+//
+//     fun toPerformerOut() = PerformerOut(fullName, birthday, role, groupName)
+// }
+
+/**
+ * Base data class for Performer entity
+ */
+abstract class PerformerBase(
+    open val fullName: String,
+    open val birthday: LocalDate,
+    open val role: String
 )
+
+/**
+ * Data class representation of Performer entity from DB
+ */
+data class Performer(
+    override val fullName: String,
+    override val birthday: LocalDate,
+    override val role: String,
+    val groupId: Int
+) : PerformerBase(fullName, birthday, role)
+
+/**
+ * Data class representation of Performer entity for output after using JOIN for
+ * changing group_id to group_name
+ */
+data class PerformerOut(
+    override val fullName: String,
+    override val birthday: LocalDate,
+    override val role: String,
+    val groupName: String
+) : PerformerBase(fullName, birthday, role)
