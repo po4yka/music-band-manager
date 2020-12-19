@@ -85,9 +85,12 @@ function fillCells(tableName, cells, element) {
             cells[3].innerHTML = `${element.endDate.day}/${element.endDate.month}/${element.endDate.year}`;
             break;
         case "concerts":
+            const date = new Date(0);
+            date.setUTCSeconds(element.dateTime);
+
             cells[0].innerHTML = element.tourProgramName;
             cells[1].innerHTML = element.groupName;
-            cells[2].innerHTML = `${element.dateTime.day}/${element.dateTime.month}/${element.dateTime.year} ${element.dateTime.hour}:${element.dateTime.minute}`;
+            cells[2].innerHTML = `${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}`;
             cells[3].innerHTML = element.place;
             cells[4].innerHTML = element.ticketsCount;
             cells[5].innerHTML = element.ticketCost;
