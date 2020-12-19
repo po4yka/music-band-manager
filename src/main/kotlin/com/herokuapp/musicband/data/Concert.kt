@@ -1,15 +1,15 @@
 package com.herokuapp.musicband.data
 
-import java.time.LocalDate
+import java.time.Instant
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.`java-time`.date
+import org.jetbrains.exposed.sql.`java-time`.timestamp
 
 object Concerts : IntIdTable() {
     val tourProgramId = integer("tour_program_id")
-    val dateTime = date("date_time")
+    val dateTime = timestamp("date_time")
     val place = varchar("place", 255)
     val ticketsCount = integer("tickets_count")
     val hallRentalCost = integer("hall_rental_cost")
@@ -39,7 +39,7 @@ class ConcertEntity(id: EntityID<Int>) : IntEntity(id) {
 
 data class Concert(
     var tourProgramId: Int,
-    val dateTime: LocalDate,
+    val dateTime: Instant,
     var place: String,
     var ticketsCount: Int,
     var hallRentalCost: Int,
@@ -49,7 +49,7 @@ data class Concert(
 data class ConcertOut(
     var tourProgramName: String,
     var groupName: String,
-    val dateTime: LocalDate,
+    val dateTime: Instant,
     var place: String,
     var ticketsCount: Int,
     var hallRentalCost: Int,
