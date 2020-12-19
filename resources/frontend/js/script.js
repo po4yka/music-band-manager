@@ -70,6 +70,11 @@ function fillCells(tableName, cells, element) {
             cells[3].innerHTML = element.role;
             break;
         case "songs":
+            cells[0].innerHTML = element.name;
+            cells[1].innerHTML = element.author;
+            cells[2].innerHTML = element.groupName;
+            cells[3].innerHTML = element.creationYear.year;
+            cells[4].innerHTML = element.composer;
             break;
         case "tour-programs":
             break;
@@ -176,7 +181,7 @@ function updateTable(tableName) {
                     generateTableHead(table, songTblHeader, 5);
                 });
             } else {
-                generateTableBody(tableName, table, performersData, 4);
+                generateTableBody(tableName, table, songsData, 4);
                 generateTableHead(table, performerTblHeader, 4);
             }
             break;
