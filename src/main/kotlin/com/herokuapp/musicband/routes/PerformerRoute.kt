@@ -18,8 +18,8 @@ fun Route.performers() {
     val performerService by di().instance<PerformerService>()
 
     get("performer") {
-        // val allPerformers = performerService.getAllPerformers()
-        val allPerformers = performerService.getPerformersWithGroups()
+        val allPerformers = performerService.getAllPerformers()
+        // val allPerformers = performerService.getPerformersWithGroups()
         println("GET all performers")
         call.respond(allPerformers)
     }
