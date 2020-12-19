@@ -45,13 +45,13 @@ fun HTML.index() {
             a {
                 id = "tour-programsNav"
                 href = "#tour-programs"
-                onClick = """updateTable("tour-programs);"""
+                onClick = """updateTable("tour-programs");"""
                 +"Tours"
             }
             a {
                 id = "concertsNav"
                 href = "#concerts"
-                onClick = """updateTable("concerts);"""
+                onClick = """updateTable("concerts");"""
                 +"Concerts"
             }
         }
