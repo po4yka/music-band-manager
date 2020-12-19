@@ -3,7 +3,7 @@
     border-radius: 3px;
     border-collapse: collapse;
     height: 320px;
-    margin: auto;
+    margin: 10px auto;
     max-width: 600px;
     padding: 5px;
     width: 100%;
@@ -84,7 +84,7 @@ td {
 }
 
 td:last-child {
-    border-right: 0px;
+    border-right: 0;
 }
 
 th.text-left {

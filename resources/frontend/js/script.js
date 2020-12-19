@@ -91,7 +91,7 @@ function fillCells(tableName, cells, element) {
 
             cells[0].innerHTML = element.tourProgramName;
             cells[1].innerHTML = element.groupName;
-            cells[2].innerHTML = date.toUTCString() ;
+            cells[2].innerHTML = date.toUTCString();
             cells[3].innerHTML = element.place;
             cells[4].innerHTML = element.ticketsCount;
             cells[5].innerHTML = element.ticketCost;
@@ -120,7 +120,9 @@ function changeActiveTopNav(tableName) {
     const navSectionNewActive = document.getElementById(tableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
     // FIXME: theoretically we can have more than 1 element
-    if (navSectionOldActive.length > 0) { navSectionOldActive[0].classList.remove("active"); }
+    if (navSectionOldActive.length > 0) {
+        navSectionOldActive[0].classList.remove("active");
+    }
     if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
 }
 
@@ -199,7 +201,7 @@ function updateTable(tableName) {
                 });
             } else {
                 generateTableBody(tableName, table, songsData, 5);
-                generateTableHead(table, performerTblHeader, 5);
+                generateTableHead(table, songTblHeader, 5);
             }
             break;
         case "tour-programs":
@@ -215,7 +217,7 @@ function updateTable(tableName) {
                 });
             } else {
                 generateTableBody(tableName, table, tourProgramsData, 4);
-                generateTableHead(table, performerTblHeader, 4);
+                generateTableHead(table, tourProgramTblHeader, 4);
             }
             break;
         case "concerts":
