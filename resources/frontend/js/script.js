@@ -86,11 +86,12 @@ function fillCells(tableName, cells, element) {
             break;
         case "concerts":
             const date = new Date(0);
+            console.log(`Seconds for concert: ${element.dateTime.seconds}`);
             date.setUTCSeconds(element.dateTime.seconds);
 
             cells[0].innerHTML = element.tourProgramName;
             cells[1].innerHTML = element.groupName;
-            cells[2].innerHTML = `${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}`;
+            cells[2].innerHTML = date.toUTCString() ;
             cells[3].innerHTML = element.place;
             cells[4].innerHTML = element.ticketsCount;
             cells[5].innerHTML = element.ticketCost;
