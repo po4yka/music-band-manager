@@ -86,7 +86,7 @@ function fillCells(tableName, cells, element) {
             break;
         case "concerts":
             const date = new Date(0);
-            date.setUTCSeconds(element.dateTime);
+            date.setUTCSeconds(element.dateTime.seconds);
 
             cells[0].innerHTML = element.tourProgramName;
             cells[1].innerHTML = element.groupName;
