@@ -56,31 +56,27 @@ class PerformerEntity(id: EntityID<Int>) : IntEntity(id) {
 // }
 
 /**
- * Base data class for Performer entity
+ * With inherit from base abstract class we will get error
+ * of 'multiple JSON fields named'
  */
-abstract class PerformerBase(
-    open val fullName: String,
-    open val birthday: LocalDate,
-    open val role: String
-)
 
 /**
  * Data class representation of Performer entity from DB
  */
 data class Performer(
-    override val fullName: String,
-    override val birthday: LocalDate,
-    override val role: String,
+    val fullName: String,
+    val birthday: LocalDate,
+    val role: String,
     val groupId: Int
-) : PerformerBase(fullName, birthday, role)
+)
 
 /**
  * Data class representation of Performer entity for output after using JOIN for
  * changing group_id to group_name
  */
 data class PerformerOut(
-    override val fullName: String,
-    override val birthday: LocalDate,
-    override val role: String,
+    val fullName: String,
+    val birthday: LocalDate,
+    val role: String,
     val groupName: String
-) : PerformerBase(fullName, birthday, role)
+)
