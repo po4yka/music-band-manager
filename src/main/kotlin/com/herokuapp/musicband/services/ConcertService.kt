@@ -19,7 +19,7 @@ class ConcertService {
     fun getAllOutConcerts(): Iterable<ConcertOut> = transaction {
         Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { Concerts.tourProgramId eq TourPrograms.id })
             .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
-            .slice(Concerts.dateTime, Concerts.ticketsCount, Concerts.hallRentalCost, Concerts.ticketCost, TourPrograms.name, Groups.groupName)
+            .slice(Concerts.dateTime, Concerts.ticketsCount, Concerts.hallRentalCost, Concerts.ticketCost, Concerts.place, TourPrograms.name, Groups.groupName)
             .selectAll()
             .map { ConcertOut(
                 it[TourPrograms.name],
