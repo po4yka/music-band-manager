@@ -14,13 +14,6 @@ object Performers : IntIdTable() {
     val role = varchar("role", 255)
 }
 
-// object PerformersOut : IntIdTable() {
-//     val fullName = varchar("full_name", 255)
-//     val birthday = date("birthday")
-//     val role = varchar("role", 255)
-//     val groupName = varchar("group_name", 255)
-// }
-
 /**
  * Represents row in a table
  */
@@ -38,22 +31,7 @@ class PerformerEntity(id: EntityID<Int>) : IntEntity(id) {
 
     // transform Entity to a simple Kotlin data class
     fun toPerformer() = Performer(fullName, birthday, role, groupId)
-
-    fun toPerformerOut(groupName: String) = PerformerOut(fullName, birthday, role, groupName)
 }
-
-// class PerformerOutEntity(id: EntityID<Int>) : IntEntity(id) {
-//     companion object : IntEntityClass<PerformerEntity>(Performers)
-//
-//     var fullName by PerformersOut.fullName
-//     var birthday by PerformersOut.birthday
-//     var role by PerformersOut.role
-//     var groupName by PerformersOut.groupName
-//
-//     override fun toString(): String = "Performer($fullName, $birthday, $groupName, $role)"
-//
-//     fun toPerformerOut() = PerformerOut(fullName, birthday, role, groupName)
-// }
 
 /**
  * With inherit from base abstract class we will get error
