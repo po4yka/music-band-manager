@@ -18,7 +18,7 @@ fun Route.songs() {
     val songService by di().instance<SongService>()
 
     get("song") {
-        val allSongs = songService.getAllSongs()
+        val allSongs = songService.getSongsWithGroups()
         println("GET all songs")
         call.respond(allSongs)
     }

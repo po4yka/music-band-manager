@@ -5,6 +5,10 @@ let repertoiresData = null;
 let tourProgramsData = null;
 let concertsData = null;
 
+const groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
+const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
+const songTblHeader = ["Name", "Author", "Group", "Creation year", "Composer"];
+
 function sendRequest(requestType, URL, data = "", sync = true,
                      callback = (text) => {
                          console.log(text);
@@ -128,7 +132,6 @@ function updateTable(tableName) {
     cleanTable(table);
     switch (tableName) {
         case "groups":
-            const groupTblHeader = ["Group", "Creation time", "Country", "Hit parade place"];
             if (groupsData === null) {
                 sendRequest("GET", "/api/v1/group", "", true, (text) => {
                     console.log("Callback for GET to /group");
@@ -146,7 +149,6 @@ function updateTable(tableName) {
             }
             break;
         case "performers":
-            const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
             if (performersData === null) {
                 sendRequest("GET", "/api/v1/performer", "", true, (text) => {
                     console.log("Callback for GET to /performer");
@@ -163,6 +165,20 @@ function updateTable(tableName) {
             }
             break;
         case "songs":
+            if (songsData === null) {
+                sendRequest("GET", "/api/v1/song", "", true, (text) => {
+                    console.log("Callback for GET to /song");
+
+                    songsData = JSON.parse(text);
+                    console.log(songsData);
+
+                    generateTableBody(tableName, table, songsData, 5);
+                    generateTableHead(table, songTblHeader, 5);
+                });
+            } else {
+                generateTableBody(tableName, table, performersData, 4);
+                generateTableHead(table, performerTblHeader, 4);
+            }
             break;
         case "tour-programs":
             break;

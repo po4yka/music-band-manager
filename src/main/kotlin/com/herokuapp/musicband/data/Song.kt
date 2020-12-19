@@ -42,3 +42,15 @@ data class Song(
     var creationYear: LocalDate,
     var composer: String
 )
+
+/**
+ * Data class representation of Song entity for output after using JOIN for
+ * changing group_id to group_name
+ */
+data class SongOut(
+    var name: String,
+    var author: String,
+    var groupName: String,
+    var creationYear: LocalDate,
+    var composer: String
+)
