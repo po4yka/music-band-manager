@@ -81,6 +81,7 @@ fun HTML.index() {
                       </div>
                       <div id="addModalBody" class="modal-body">
                         <div id="addNewElMainDropdown" class="dropdown">
+                            <p>TEST MESSAGE</p>
                             <button class="btn btn-primary dropdown-toggle" id="addNewElMainDropMenu" type="button" data-toggle="dropdown">Dropdown Example
                             <span class="caret"></span></button>
                             <ul id="addElDropdownList" class="dropdown-menu" role="menu" aria-labelledby="addNewElMainDropMenu">
