@@ -266,11 +266,11 @@ function addNewElementMain() {
     switch (currentTableName) {
         case "groups":
             addElementTitle.innerText = "Add new group";
-            addElementDropdown.style.display = "none";
+            // addElementDropdown.style.display = "none";
             break;
         case "performers":
             addElementTitle.innerText = "Add new performer";
-            addElementDropdown.style.display = "run-in";
+            // addElementDropdown.style.display = "run-in";
             break;
     }
 }
