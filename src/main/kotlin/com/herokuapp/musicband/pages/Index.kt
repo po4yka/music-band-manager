@@ -62,7 +62,7 @@ fun HTML.index() {
         }
         unsafe {
             +"""
-                <button type="button" id="addBtnMain" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Add</button>
+                <button type="button" id="addBtnMain" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#addModal" onclick="addNewElementMain()">Add</button>
             """.trimIndent()
         }
         table(classes = "table-fill") {
@@ -80,7 +80,13 @@ fun HTML.index() {
                         </button>
                       </div>
                       <div id="addModalBody" class="modal-body">
-                        
+                        <div id="addNewElMainDropdown" class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" id="addNewElMainDropMenu" type="button" data-toggle="dropdown">Dropdown Example
+                            <span class="caret"></span></button>
+                            <ul id="addElDropdownList" class="dropdown-menu" role="menu">
+                            </ul>
+                        </div>
+                        <br>
                         
                       </div>
                       <div class="modal-footer">
