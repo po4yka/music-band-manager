@@ -263,7 +263,7 @@ function fillSelectForAddPerformer(select) {
     }
 }
 
-function addNewElementMain() {
+function addNewElementMainOpen() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
     const addElementBody = document.getElementById("addModalBody");
     const addElementTitle = document.getElementById("addModalTitleLabel");
@@ -274,11 +274,19 @@ function addNewElementMain() {
             console.log("Add new group triggered");
             addElementTitle.innerText = "Add new group";
             addElementSelect.style.display = "none";
+            addElementBody.innerHTML += "<input type='text' class='form-control' id='enterGroupNameModal' placeholder='Group name'>" +
+                "<input type='date' class='form-control' id='enterGroupCreationModal' placeholder='Creation date'>" +
+                "<input type='text' class='form-control' id='enterGroupCountryModal' placeholder='Country'>" +
+                "<input type='number' class='form-control' id='enterGroupHitModal' placeholder='Hit parade'>";
             break;
         case "performers":
             console.log("Add new performer triggered");
             addElementTitle.innerText = "Add new performer";
             addElementSelect.style.display = "block";
+            addElementBody.innerHTML = "<select id='addModalSelect' class='form-control'></select>" +
+                "<input type='text' class='form-control' id='enterPerfNameModal' placeholder='Name'>" +
+                "<input type='date' class='form-control' id='enterPerfBirthModal' placeholder='Birthday'>" +
+                "<input type='text' class='form-control' id='enterPerfRoleModal' placeholder='Role'>";
             fillSelectForAddPerformer(addElementSelect);
             break;
     }
