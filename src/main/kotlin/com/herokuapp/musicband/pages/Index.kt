@@ -62,7 +62,7 @@ fun HTML.index() {
         }
         unsafe {
             +"""
-                <button type="button" id="addBtnMain" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" onclick="addNewElementMain()">Add</button>
+                <button type="button" id="addBtnMain" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Add</button>
             """.trimIndent()
         }
         table(classes = "table-fill") {
