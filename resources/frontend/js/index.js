@@ -270,7 +270,7 @@ function addNewElementMain() {
             break;
         case "performers":
             addElementTitle.innerText = "Add new performer";
-            addElementDropdown.style.display = "block";
+            addElementDropdown.style.display = "run-in";
             break;
     }
 }
