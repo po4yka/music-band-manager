@@ -257,10 +257,17 @@ function updateTable(tableName) {
     }
 }
 
+function fillSelectForAddPerformer(select) {
+    for (let performer in groupsData) {
+        select.innerHTML += "<option>performer.groupName</option>";
+    }
+}
+
 function addNewElementMain() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
     const addElementBody = document.getElementById("addModalBody");
     const addElementSelect = document.getElementById("addModalSelect");
+    addElementSelect.innerHTML = "";
     switch (currentTableName) {
         case "groups":
             console.log("Add new group triggered");
@@ -269,6 +276,7 @@ function addNewElementMain() {
         case "performers":
             console.log("Add new performer triggered");
             addElementSelect.style.display = "block";
+            fillSelectForAddPerformer(addElementSelect);
             break;
     }
 }
