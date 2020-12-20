@@ -70,21 +70,28 @@ fun HTML.index() {
         }
         unsafe {
             +"""
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="addModalTitleLabel">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+                      <div id="addModalBody" class="modal-body">
+                        <div id="addNewElMainDropdown" class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" id="addNewElMainDropMenu" type="button" data-toggle="dropdown">Dropdown Example
+                            <span class="caret"></span></button>
+                            <ul id="addElDropdownList" class="dropdown-menu" role="menu">
+                            </ul>
+                        </div>
+                        <br>
+                        
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary">Add/button>
                       </div>
                     </div>
                   </div>

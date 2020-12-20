@@ -258,7 +258,20 @@ function updateTable(tableName) {
 }
 
 function addNewElementMain() {
-
+    const addElementTitle = document.getElementById("addModalTitleLabel");
+    const addElementBody = document.getElementById("addModalBody");
+    const addElementDropdown = document.getElementById("addModalBody");
+    addElementBody.innerHTML = "";
+    switch (currentTableName) {
+        case "groups":
+            addElementTitle.innerText = "Add new group";
+            addElementDropdown.style.display = "none";
+            break;
+        case "performers":
+            addElementTitle.innerText = "Add new performer";
+            addElementDropdown.style.display = "block";
+            break;
+    }
 }
 
 // default table
