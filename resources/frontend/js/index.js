@@ -259,7 +259,7 @@ function updateTable(tableName) {
 
 function fillSelectForAddPerformer(select) {
     for (let performer in groupsData) {
-        select.innerHTML += "<option>performer.groupName</option>";
+        select.innerHTML += `<option>${performer.groupName}</option>`;
     }
 }
 
