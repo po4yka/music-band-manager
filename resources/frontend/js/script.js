@@ -148,9 +148,11 @@ function changeAddBtnStatus() {
     const btn = document.getElementById("addBtnMain");
     switch (currentTableName) {
         case "groups":
+            btn.style.display = "block";
             btn.textContent = "Add new group";
             break;
         case "performers":
+            btn.style.display = "block";
             btn.textContent = "Add new performer";
             break;
         default:

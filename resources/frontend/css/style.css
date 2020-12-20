@@ -4,7 +4,7 @@
 @import "./btn.css";
 
 body {
-    background-color: #3e94ec;
+    background-color: #3e94ec !important;
     font-family: "Roboto", helvetica, arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
