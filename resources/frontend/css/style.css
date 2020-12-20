@@ -2,6 +2,7 @@
 @import "./topBar.css";
 @import "./table.css";
 @import "./btn.css";
+@import "./modal.css";
 
 body {
     background-color: #3e94ec !important;
