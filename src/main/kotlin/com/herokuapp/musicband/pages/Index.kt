@@ -60,7 +60,7 @@ fun HTML.index() {
                 +"Concerts"
             }
         }
-        button(classes = "btn btn-primary btn-lg btn-block") {
+        button(classes = "btn btn-outline-info btn-lg btn-block") {
             id = "addBtnMain"
         }
         table(classes = "table-fill") {
