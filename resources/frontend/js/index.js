@@ -271,20 +271,47 @@ function addNewElementMainOpen() {
         case "groups":
             console.log("Add new group triggered");
             addElementTitle.innerText = "Add new group";
-            addElementBody.innerHTML = "<input type='text' class='form-control' id='enterGroupNameModal' placeholder='Group name'>" +
-                "<input type='date' class='form-control' id='enterGroupCreationModal' placeholder='Creation date'>" +
-                "<input type='text' class='form-control' id='enterGroupCountryModal' placeholder='Country'>" +
-                "<input type='number' class='form-control' id='enterGroupHitModal' placeholder='Hit parade'>";
+            addElementBody.innerHTML = "<input type='text' class='form-control' id='enterGroupNameModal' placeholder='Group name'> required" +
+                "<input type='date' class='form-control' id='enterGroupCreationModal' placeholder='Creation date'> required" +
+                "<input type='text' class='form-control' id='enterGroupCountryModal' placeholder='Country'> required" +
+                "<input type='number' class='form-control' id='enterGroupHitModal' placeholder='Hit parade'> required";
             break;
         case "performers":
             console.log("Add new performer triggered");
             addElementTitle.innerText = "Add new performer";
-            addElementBody.innerHTML = "<select id='addModalSelect' class='form-control'></select>" +
-                "<input type='text' class='form-control' id='enterPerfNameModal' placeholder='Name'>" +
-                "<input type='date' class='form-control' id='enterPerfBirthModal' placeholder='Birthday'>" +
-                "<input type='text' class='form-control' id='enterPerfRoleModal' placeholder='Role'>";
+            addElementBody.innerHTML = "<select id='addModalSelect' class='form-control' required></select>" +
+                "<input type='text' class='form-control' id='enterPerfNameModal' placeholder='Name' required>" +
+                "<input type='date' class='form-control' id='enterPerfBirthModal' placeholder='Birthday' required>" +
+                "<input type='text' class='form-control' id='enterPerfRoleModal' placeholder='Role' required>";
             const addElementSelect = document.getElementById("addModalSelect");
             fillSelectForAddPerformer(addElementSelect);
+            break;
+    }
+}
+
+function addNewElementRequest() {
+    switch (currentTableName) {
+        case "groups":
+            const groupName = document.getElementById("enterGroupNameModal");
+            const groupCreationDate = document.getElementById("enterGroupCreationModal");
+            const groupCountry = document.getElementById("enterGroupCountryModal");
+            const groupHitParade = document.getElementById("enterGroupHitModal");
+            if (groupName === null || groupCreationDate === null || groupCountry === null || groupHitParade === null) {
+                alert("Fields can't be null!");
+                return;
+            }
+            const data = {
+                "groupName": groupName,
+                "groupCreationDate": groupCreationDate,
+                "groupCountry": groupCountry,
+                "groupHitParade": groupHitParade
+            }
+            sendRequest("POST", "/api/v1/group", data, true, (text) => {
+                console.log("Callback for POST to /group");
+                // TODO: answer work
+            });
+            break;
+        case "performers":
             break;
     }
 }

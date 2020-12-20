@@ -3,6 +3,7 @@
 @import "./table.css";
 @import "./btn.css";
 @import "./modal.css";
+@import "./inputforms.css";
 
 body {
     background-color: #3e94ec !important;
