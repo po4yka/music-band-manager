@@ -22,7 +22,10 @@ fun HTML.index() {
         script(src = "https://code.jquery.com/jquery-3.3.1.slim.min.js") { }
         script(src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js") { }
         script(src = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js") { }
-        script(src = "/static/script.js") { defer = true }
+        script(src = "/static/mainElements.js") { defer = true }
+        script(src = "/static/request.js") { defer = true }
+        script(src = "/static/table.js") { defer = true }
+        script(src = "/static/index.js") { defer = true }
     }
     body {
         h1 {
@@ -60,8 +63,9 @@ fun HTML.index() {
                 +"Concerts"
             }
         }
-        button(classes = "btn btn-outline-info btn-lg btn-block") {
+        button(classes = "btn btn-primary btn-lg btn-block") {
             id = "addBtnMain"
+            onClick = """addNewElementMain();"""
         }
         table(classes = "table-fill") {
             id = "dataTable"

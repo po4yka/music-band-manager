@@ -1,4 +1,7 @@
-let currentTableName = null;
+import {sendRequest} from "./request";
+import {changeActiveTopNav, changeAddBtnStatus} from "./mainElements"
+
+export let currentTableName = null;
 
 let groupsData = null;
 let performersData = null;
@@ -12,27 +15,6 @@ const performerTblHeader = ["Full name", "Birthday", "Group", "Role"];
 const songTblHeader = ["Name", "Author", "Group", "Creation year", "Composer"];
 const tourProgramTblHeader = ["Name", "Group", "Start", "End"];
 const concertTblHeader = ["Tour name", "Group", "Date/Time", "Place", "Tickets sold", "Ticket cost", "Rent cost"];
-
-function sendRequest(requestType, URL, data = "", sync = true,
-                     callback = (text) => {
-                         console.log(text);
-                         updateTable();
-                     }) {
-
-    console.log("Sending", requestType, "request at URL:", URL, "with data", data);
-
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            callback(this.responseText);
-        }
-    }
-
-    xhttp.open(requestType, URL, sync);
-    xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-
-    xhttp.send(JSON.stringify(data));
-}
 
 /**
  * Generate header of table
@@ -114,19 +96,6 @@ function generateTableBody(table, tableInfo, columnCount) {
 }
 
 /**
- * Change active top navigation tab
- */
-function changeActiveTopNav() {
-    const navSectionNewActive = document.getElementById(currentTableName + "Nav");
-    const navSectionOldActive = document.getElementsByClassName("active");
-    // FIXME: theoretically we can have more than 1 element
-    if (navSectionOldActive.length > 0) {
-        navSectionOldActive[0].classList.remove("active");
-    }
-    if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
-}
-
-/**
  * Delete table header and body
  * @param table
  */
@@ -144,27 +113,11 @@ function cleanTable(table) {
     }
 }
 
-function changeAddBtnStatus() {
-    const btn = document.getElementById("addBtnMain");
-    switch (currentTableName) {
-        case "groups":
-            btn.style.display = "block";
-            btn.textContent = "Add new group";
-            break;
-        case "performers":
-            btn.style.display = "block";
-            btn.textContent = "Add new performer";
-            break;
-        default:
-            btn.style.display = "none";
-    }
-}
-
 /**
  * Redraw table based on menu option
  * @param tableName: string
  */
-function updateTable(tableName) {
+export default function updateTable(tableName) {
     console.log("updateTable was called");
     currentTableName = tableName;
     const table = document.getElementById('dataTable');
@@ -256,6 +209,3 @@ function updateTable(tableName) {
             break;
     }
 }
-
-// FIXME: default table show
-updateTable("groups");
