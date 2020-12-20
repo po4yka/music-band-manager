@@ -70,7 +70,7 @@ fun HTML.index() {
         }
         unsafe {
             +"""
-                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addElModalLabel" aria-hidden="true">
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalTitleLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -83,14 +83,12 @@ fun HTML.index() {
                         <div id="addNewElMainDropdown" class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" id="addNewElMainDropMenu" type="button" data-toggle="dropdown">Dropdown Example
                             <span class="caret"></span></button>
-                            <ul id="addElDropdownList" class="dropdown-menu" role="addNewElMainDropMenu">
+                            <ul id="addElDropdownList" class="dropdown-menu" role="menu" aria-labelledby="addNewElMainDropMenu">
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
                             </ul>
                         </div>
-                        <br>
-                        
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
