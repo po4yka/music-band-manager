@@ -37,7 +37,7 @@ function sendRequest(requestType, URL, data = "", sync = true,
 /**
  * Change active top navigation tab
  */
-export function changeActiveTopNav() {
+function changeActiveTopNav() {
     const navSectionNewActive = document.getElementById(currentTableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
     // FIXME: theoretically we can have more than 1 element
@@ -47,7 +47,7 @@ export function changeActiveTopNav() {
     if (navSectionNewActive !== null) navSectionNewActive.classList.add("active");
 }
 
-export function changeAddBtnStatus() {
+function changeAddBtnStatus() {
     const btn = document.getElementById("addBtnMain");
     switch (currentTableName) {
         case "groups":
