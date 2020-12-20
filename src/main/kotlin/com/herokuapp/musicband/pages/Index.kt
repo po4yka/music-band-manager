@@ -83,7 +83,10 @@ fun HTML.index() {
                         <div id="addNewElMainDropdown" class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" id="addNewElMainDropMenu" type="button" data-toggle="dropdown">Dropdown Example
                             <span class="caret"></span></button>
-                            <ul id="addElDropdownList" class="dropdown-menu" role="menu">
+                            <ul id="addElDropdownList" class="dropdown-menu" role="addNewElMainDropMenu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
                             </ul>
                         </div>
                         <br>
@@ -91,7 +94,7 @@ fun HTML.index() {
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add/button>
+                        <button type="button" class="btn btn-primary">Add</button>
                       </div>
                     </div>
                   </div>
