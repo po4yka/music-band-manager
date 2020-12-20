@@ -258,7 +258,7 @@ function updateTable(tableName) {
 }
 
 function fillSelectForAddPerformer(select) {
-    for (let performer in groupsData) {
+    for (let performer of groupsData) {
         select.innerHTML += `<option>${performer.groupName}</option>`;
     }
 }
@@ -266,15 +266,18 @@ function fillSelectForAddPerformer(select) {
 function addNewElementMain() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
     const addElementBody = document.getElementById("addModalBody");
+    const addElementTitle = document.getElementById("addModalTitleLabel");
     const addElementSelect = document.getElementById("addModalSelect");
     addElementSelect.innerHTML = "";
     switch (currentTableName) {
         case "groups":
             console.log("Add new group triggered");
+            addElementTitle.innerText = "Add new group";
             addElementSelect.style.display = "none";
             break;
         case "performers":
             console.log("Add new performer triggered");
+            addElementTitle.innerText = "Add new performer";
             addElementSelect.style.display = "block";
             fillSelectForAddPerformer(addElementSelect);
             break;
