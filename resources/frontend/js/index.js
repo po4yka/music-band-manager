@@ -258,6 +258,7 @@ function updateTable(tableName) {
 }
 
 function addNewElementMain() {
+    console.log("addNewElementMain was called");
     const addElementTitle = document.getElementById("addModalTitleLabel");
     const addElementBody = document.getElementById("addModalBody");
     const addElementDropdown = document.getElementById("addModalBody");
