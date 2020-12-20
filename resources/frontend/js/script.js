@@ -1,3 +1,5 @@
+let currentTableName = null;
+
 let groupsData = null;
 let performersData = null;
 let songsData = null;
@@ -52,13 +54,12 @@ function generateTableHead(table, tableHeaderData) {
 
 /**
  * Fill cells of table based on this name
- * @param tableName
  * @param cells
  * @param element
  */
-function fillCells(tableName, cells, element) {
+function fillCells(cells, element) {
     console.log("fillCells was called");
-    switch (tableName) {
+    switch (currentTableName) {
         case "groups":
             cells[0].innerHTML = element.groupName;
             cells[1].innerHTML = `${element.creationTime.day}/${element.creationTime.month}/${element.creationTime.year}`;
@@ -100,7 +101,7 @@ function fillCells(tableName, cells, element) {
     }
 }
 
-function generateTableBody(tableName, table, tableInfo, columnCount) {
+function generateTableBody(table, tableInfo, columnCount) {
     console.log("generateTableBody was called");
     for (let element of tableInfo) {
         let tRow = table.insertRow();
@@ -108,16 +109,15 @@ function generateTableBody(tableName, table, tableInfo, columnCount) {
         for (let j = 0; j < columnCount; ++j) {
             cells[j] = tRow.insertCell(j);
         }
-        fillCells(tableName, cells, element);
+        fillCells(cells, element);
     }
 }
 
 /**
  * Change active top navigation tab
- * @param tableName
  */
-function changeActiveTopNav(tableName) {
-    const navSectionNewActive = document.getElementById(tableName + "Nav");
+function changeActiveTopNav() {
+    const navSectionNewActive = document.getElementById(currentTableName + "Nav");
     const navSectionOldActive = document.getElementsByClassName("active");
     // FIXME: theoretically we can have more than 1 element
     if (navSectionOldActive.length > 0) {
@@ -144,17 +144,33 @@ function cleanTable(table) {
     }
 }
 
+function changeAddBtnStatus() {
+    const btn = document.getElementById("addBtnMain");
+    switch (currentTableName) {
+        case "groups":
+            btn.textContent = "Add new group";
+            break;
+        case "performers":
+            btn.textContent = "Add new performer";
+            break;
+        default:
+            btn.style.display = "gone";
+    }
+}
+
 /**
  * Redraw table based on menu option
  * @param tableName: string
  */
 function updateTable(tableName) {
     console.log("updateTable was called");
+    currentTableName = tableName;
     const table = document.getElementById('dataTable');
-    if (table === null) return;
-    changeActiveTopNav(tableName);
+    if (table === null || currentTableName == null) return;
+    changeActiveTopNav();
+    changeAddBtnStatus();
     cleanTable(table);
-    switch (tableName) {
+    switch (currentTableName) {
         case "groups":
             if (groupsData === null) {
                 sendRequest("GET", "/api/v1/group", "", true, (text) => {
@@ -164,7 +180,7 @@ function updateTable(tableName) {
                     console.log(groupsData);
 
                     // FIXME: delete duplicate lines
-                    generateTableBody(tableName, table, groupsData, 4);
+                    generateTableBody(table, groupsData, 4);
                     generateTableHead(table, groupTblHeader);
                 });
             } else {
@@ -180,11 +196,11 @@ function updateTable(tableName) {
                     performersData = JSON.parse(text);
                     console.log(performersData);
 
-                    generateTableBody(tableName, table, performersData, 4);
+                    generateTableBody(table, performersData, 4);
                     generateTableHead(table, performerTblHeader, 4);
                 });
             } else {
-                generateTableBody(tableName, table, performersData, 4);
+                generateTableBody(table, performersData, 4);
                 generateTableHead(table, performerTblHeader, 4);
             }
             break;
@@ -196,11 +212,11 @@ function updateTable(tableName) {
                     songsData = JSON.parse(text);
                     console.log(songsData);
 
-                    generateTableBody(tableName, table, songsData, 5);
+                    generateTableBody(table, songsData, 5);
                     generateTableHead(table, songTblHeader, 5);
                 });
             } else {
-                generateTableBody(tableName, table, songsData, 5);
+                generateTableBody(table, songsData, 5);
                 generateTableHead(table, songTblHeader, 5);
             }
             break;
@@ -212,11 +228,11 @@ function updateTable(tableName) {
                     tourProgramsData = JSON.parse(text);
                     console.log(tourProgramsData);
 
-                    generateTableBody(tableName, table, tourProgramsData, 4);
+                    generateTableBody(table, tourProgramsData, 4);
                     generateTableHead(table, tourProgramTblHeader, 4);
                 });
             } else {
-                generateTableBody(tableName, table, tourProgramsData, 4);
+                generateTableBody(table, tourProgramsData, 4);
                 generateTableHead(table, tourProgramTblHeader, 4);
             }
             break;
@@ -228,11 +244,11 @@ function updateTable(tableName) {
                     concertsData = JSON.parse(text);
                     console.log(concertsData);
 
-                    generateTableBody(tableName, table, concertsData, 7);
+                    generateTableBody(table, concertsData, 7);
                     generateTableHead(table, concertTblHeader, 7);
                 });
             } else {
-                generateTableBody(tableName, table, concertsData, 7);
+                generateTableBody(table, concertsData, 7);
                 generateTableHead(table, concertTblHeader, 7);
             }
             break;

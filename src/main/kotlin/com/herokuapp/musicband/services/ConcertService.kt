@@ -22,14 +22,14 @@ class ConcertService {
             .slice(Concerts.dateTime, Concerts.ticketsCount, Concerts.hallRentalCost, Concerts.ticketCost, Concerts.place, TourPrograms.name, Groups.groupName)
             .selectAll()
             .map { ConcertOut(
-                it[TourPrograms.name],
-                it[Groups.groupName],
-                it[Concerts.dateTime],
-                it[Concerts.place],
-                it[Concerts.ticketsCount],
-                it[Concerts.hallRentalCost],
-                it[Concerts.ticketCost]
-            )
+                    it[TourPrograms.name],
+                    it[Groups.groupName],
+                    it[Concerts.dateTime],
+                    it[Concerts.place],
+                    it[Concerts.ticketsCount],
+                    it[Concerts.hallRentalCost],
+                    it[Concerts.ticketCost]
+                )
             }
     }
 
