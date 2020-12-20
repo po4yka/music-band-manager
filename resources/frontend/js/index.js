@@ -259,18 +259,13 @@ function updateTable(tableName) {
 
 function addNewElementMain() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
-    const addElementTitle = document.getElementById("addModalTitleLabel");
-    const addElementBody = document.getElementById("addModalBody");
-    const addElementDropdown = document.getElementById("addModalBody");
-    addElementBody.innerHTML = "";
+    const addElementSelect = document.getElementById("addModalBody");
     switch (currentTableName) {
         case "groups":
-            addElementTitle.innerText = "Add new group";
-            // addElementDropdown.style.display = "none";
+            addElementSelect.style.display = "none";
             break;
         case "performers":
-            addElementTitle.innerText = "Add new performer";
-            // addElementDropdown.style.display = "run-in";
+            addElementSelect.style.display = "run-in";
             break;
     }
 }
