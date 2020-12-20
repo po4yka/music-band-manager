@@ -154,7 +154,7 @@ function changeAddBtnStatus() {
             btn.textContent = "Add new performer";
             break;
         default:
-            btn.style.display = "gone";
+            btn.style.display = "none";
     }
 }
 
@@ -184,7 +184,7 @@ function updateTable(tableName) {
                     generateTableHead(table, groupTblHeader);
                 });
             } else {
-                generateTableBody(tableName, table, groupsData, 4);
+                generateTableBody(table, groupsData, 4);
                 generateTableHead(table, groupTblHeader);
             }
             break;
