@@ -257,5 +257,9 @@ function updateTable(tableName) {
     }
 }
 
+function addNewElementMain() {
+
+}
+
 // default table
 updateTable("groups");
