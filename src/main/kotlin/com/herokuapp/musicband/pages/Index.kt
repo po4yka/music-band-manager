@@ -80,8 +80,7 @@ fun HTML.index() {
                         </button>
                       </div>
                       <div id="addModalBody" class="modal-body">
-                        <p>TEST</p>
-                        <select class="form-control">
+                        <select id="addModalSelect" class="form-control">
                           <option>Default select</option>
                         </select>
                       </div>

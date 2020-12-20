@@ -259,7 +259,8 @@ function updateTable(tableName) {
 
 function addNewElementMain() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
-    const addElementSelect = document.getElementById("addModalBody");
+    const addElementBody = document.getElementById("addModalBody");
+    const addElementSelect = document.getElementById("addModalSelect");
     switch (currentTableName) {
         case "groups":
             console.log("Add new group triggered");
