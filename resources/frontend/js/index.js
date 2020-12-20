@@ -259,13 +259,15 @@ function updateTable(tableName) {
 
 function addNewElementMain() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
-    // const addElementSelect = document.getElementById("addModalBody");
+    const addElementSelect = document.getElementById("addModalBody");
     switch (currentTableName) {
         case "groups":
-            // addElementSelect.style.display = "none";
+            console.log("Add new group triggered");
+            addElementSelect.style.display = "none";
             break;
         case "performers":
-            // addElementSelect.style.display = "run-in";
+            console.log("Add new performer triggered");
+            addElementSelect.style.display = "block";
             break;
     }
 }
