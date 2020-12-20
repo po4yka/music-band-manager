@@ -1,4 +1,5 @@
 #addBtnMain {
-    margin: 15px 15px;
+    margin: 15px auto;
     color: #4E5066;
+    border-radius: 0;
 }
