@@ -357,9 +357,8 @@ function showTableRowInformation(row) {
             const data = {
                 name: groupName
             }
-            console.log(`sending to lineup: ${data}`);
             sendRequest("POST", "/api/v1/lineup", data, true, (text) => {
-                console.log("Callback for GET to /lineup");
+                console.log("Callback for POST to /lineup");
                 const lineupData = JSON.parse(text);
                 console.log(lineupData);
                 const header = document.createElement('h5');
@@ -370,6 +369,21 @@ function showTableRowInformation(row) {
                 for (let el of lineupData) {
                     let li = document.createElement('li');
                     li.textContent = `${el.fullName}, ${el.role}`;
+                    ul.append(li);
+                }
+            });
+            sendRequest("POST", "/api/v1/repertoire", data, true, (text) => {
+                console.log("Callback for POST to /repertoire");
+                const repertoireData = JSON.parse(text);
+                console.log(repertoireData);
+                const header = document.createElement('h5');
+                header.innerText = "Band repertoire";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of repertoireData) {
+                    let li = document.createElement('li');
+                    li.textContent = `${el.name} - ${el.author}`;
                     ul.append(li);
                 }
             });

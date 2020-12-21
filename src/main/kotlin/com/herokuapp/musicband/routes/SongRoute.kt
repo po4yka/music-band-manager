@@ -1,5 +1,7 @@
 package com.herokuapp.musicband.routes
 
+import com.google.gson.Gson
+import com.herokuapp.musicband.data.RepertoireSong
 import com.herokuapp.musicband.data.Song
 import com.herokuapp.musicband.services.SongService
 import io.ktor.application.call
@@ -21,6 +23,21 @@ fun Route.songs() {
         val allSongs = songService.getSongsWithGroups()
         println("GET all songs")
         call.respond(allSongs)
+    }
+
+    post("repertoire") {
+        println("POST /repertoire")
+        val json = call.receive<String>()
+        println(json)
+        if (json.isEmpty()) {
+            call.respond(HttpStatusCode.BadRequest)
+            return@post
+        }
+        val repertoireRequest = Gson().fromJson(json, RepertoireSong::class.java)
+        println(repertoireRequest)
+        val repertoire = songService.getRepertoire(repertoireRequest.name)
+        println("Repertoire: $repertoire")
+        call.respond(repertoire)
     }
 
     post("song") {

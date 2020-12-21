@@ -26,7 +26,7 @@ fun Route.performers() {
     }
 
     post("lineup") {
-        println("GET /lineup")
+        println("POST /lineup")
         val json = call.receive<String>()
         println(json)
         if (json.isEmpty()) {

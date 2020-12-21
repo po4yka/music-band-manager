@@ -54,3 +54,8 @@ data class SongOut(
     var creationYear: LocalDate,
     var composer: String
 )
+
+data class RepertoireSong(
+    var name: String,
+    var author: String
+)
