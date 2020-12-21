@@ -304,12 +304,11 @@ function addNewElementRequest() {
                 return;
             }
             const dateSplit = groupCreationDate.value.split('-');
-            const date = new Date(dateSplit[0], dateSplit[1], dateSplit[2]);
             const data = {
-                "groupName": groupName.value,
-                "creationTime": date,
-                "country": groupCountry.value,
-                "hitParadePlace": groupHitParade.value
+                groupName: groupName.value,
+                creationTime: `{year: ${dateSplit[0]}, month: ${dateSplit[1]}, day: ${dateSplit[2]}`,
+                country: groupCountry.value,
+                hitParadePlace: groupHitParade.value
             }
             sendRequest("POST", "/api/v1/group", JSON.stringify(data), true, (text) => {
                 console.log("Callback for POST to /group");
