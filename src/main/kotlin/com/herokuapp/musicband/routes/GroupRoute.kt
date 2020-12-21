@@ -2,6 +2,7 @@ package com.herokuapp.musicband.routes
 
 import com.google.gson.Gson
 import com.herokuapp.musicband.data.Group
+import com.herokuapp.musicband.removeQuotesAndUnescape
 import com.herokuapp.musicband.services.GroupService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
@@ -27,7 +28,7 @@ fun Route.groups() {
 
     post("group") {
         println("POST /group")
-        val json = call.receive<String>()
+        val json = removeQuotesAndUnescape(call.receive())
         println(json)
         val bookRequest = Gson().fromJson(json, Group::class.java)
         println(bookRequest)
