@@ -13,6 +13,7 @@ import io.ktor.routing.Route
 import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
+import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.kodein.di.instance
 import org.kodein.di.ktor.di
 
@@ -34,7 +35,7 @@ fun Route.groups() {
         println(bookRequest)
         try {
             groupService.addGroup(bookRequest)
-        } catch (exp: Throwable) {
+        } catch (exp: ExposedSQLException) {
             println(exp)
             call.respond(HttpStatusCode.InternalServerError, "Incorrect key for new Group")
             return@post
