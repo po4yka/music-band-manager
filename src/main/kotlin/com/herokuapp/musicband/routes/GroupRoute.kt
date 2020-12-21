@@ -28,9 +28,9 @@ fun Route.groups() {
 
     post("group") {
         println("POST /group")
-        val json = removeQuotesAndUnescape(call.receive())
-        println(json)
-        val bookRequest = Gson().fromJson(json, Group::class.java)
+        val json = call.receive<String>()
+        println(removeQuotesAndUnescape(json))
+        val bookRequest = Gson().fromJson(removeQuotesAndUnescape(json), Group::class.java)
         println(bookRequest)
         // groupService.addGroup(bookRequest)
         call.respond(HttpStatusCode.Accepted)
