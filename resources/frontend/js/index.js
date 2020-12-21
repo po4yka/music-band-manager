@@ -144,9 +144,7 @@ function generateTableBody(table, tableInfo, columnCount) {
         }
         tRow.onclick = function() {
             console.log("click on table row");
-            return function () {
-                showTableRowInformation(tRow);
-            }
+            showTableRowInformation(tRow);
         };
         const cells = []
         for (let j = 0; j < columnCount; ++j) {
@@ -349,6 +347,7 @@ function addNewElementRequest() {
 function showTableRowInformation(row) {
     console.log("showTableRowInformation was called");
     const infoModalBody = document.getElementById("addModalBody");
+    infoModalBody.innerHTML = "";
     const infoModalTitle = document.getElementById("addModalTitleLabel");
     switch (currentTableName) {
         case "groups":
