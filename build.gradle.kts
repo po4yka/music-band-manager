@@ -68,6 +68,9 @@ dependencies {
 
     // Spotless
     implementation("com.diffplug.spotless:spotless-plugin-gradle:5.8.2")
+
+    // Klaxon - json parse
+    implementation("com.beust:klaxon:5.0.1")
 }
 
 tasks.withType<ShadowJar>() {

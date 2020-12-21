@@ -1,3 +1,5 @@
+import * as util from 'util';
+
 let currentTableName = null;
 
 let groupsData = null;
@@ -304,8 +306,13 @@ function addNewElementRequest() {
                 return;
             }
             const dateSplit = groupCreationDate.value.split('-');
-            const data = `{groupName: ${groupName.value}, creationTime: {year: ${dateSplit[0]}, month: ${dateSplit[1]}, day: ${dateSplit[2]}}, country: ${groupCountry.value}, hitParadePlace: ${groupHitParade.value}}`;
-            sendRequest("POST", "/api/v1/group", data, true, (text) => {
+            const data = {
+                groupName: groupName.value,
+                creationTime: {year: dateSplit[0], month: dateSplit[1], day: dateSplit[2]},
+                country: groupCountry.value,
+                hitParadePlace: groupHitParade.value
+            }
+            sendRequest("POST", "/api/v1/group", JSON.stringify(data), true, (text) => {
                 console.log("Callback for POST to /group");
                 // TODO: answer work
             });
