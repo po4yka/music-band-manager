@@ -31,11 +31,12 @@ class PerformerService {
 
     fun getLineup(groupName: String): Iterable<Lineup> = transaction {
         Performers.join(Groups, JoinType.INNER, additionalConstraint = { Performers.groupId eq Groups.id })
-            .slice(Performers.fullName, Performers.role)
+            .slice(Performers.fullName, Performers.role, Performers.birthday)
             .select { Groups.groupName eq groupName }
             .map { Lineup(
                 it[Performers.fullName],
-                it[Performers.role])
+                it[Performers.role],
+                it[Performers.birthday])
             }
     }
 

@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class GroupService {
 
     fun getAllGroups(): Iterable<Group> = transaction {
-        GroupEntity.all().orderBy(Groups.hitParadePlace to SortOrder.DESC).map(GroupEntity::toGroup)
+        GroupEntity.all().orderBy(Groups.hitParadePlace to SortOrder.ASC).map(GroupEntity::toGroup)
     }
 
     fun addGroup(group: Group) {

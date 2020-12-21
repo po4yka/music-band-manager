@@ -61,5 +61,6 @@ data class PerformerOut(
 
 data class Lineup(
     val fullName: String,
-    val role: String
+    val role: String,
+    val birthday: LocalDate
 )
