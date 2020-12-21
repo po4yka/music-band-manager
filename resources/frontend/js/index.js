@@ -377,11 +377,9 @@ function showTableRowInformation(row) {
                 infoModalBody.append(ul);
                 for (let el of lineupData) {
                     let li = document.createElement('li');
-                    const date = new Date(0);
-                    date.setUTCSeconds(el.birthday.seconds);
                     const today = new Date();
-                    const age = today.getFullYear() - date.getFullYear();
-                    console.log(`today: ${today.getFullYear()}; date: ${date.getFullYear()}`);
+                    const age = today.getFullYear() - el.birthday.year;
+                    console.log(`today: ${today.getFullYear()}; date: ${el.birthday.year}`);
                     li.textContent = `${el.fullName}, ${el.role}, age: ${age}`;
                     ul.append(li);
                 }
