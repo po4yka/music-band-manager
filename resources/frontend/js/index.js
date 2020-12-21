@@ -305,8 +305,8 @@ function addNewElementRequest() {
     console.log("addNewElementRequest was called");
 
     const addBtn = document.getElementById("addBtnInModal");
-    addBtn.style.visibility = "block";
-    
+    addBtn.style.display = "block";
+
     switch (currentTableName) {
         case "groups":
             const groupName = document.getElementById("enterGroupNameModal");
@@ -352,7 +352,7 @@ function showTableRowInformation(row) {
     console.log("showTableRowInformation was called");
 
     const addBtn = document.getElementById("addBtnInModal");
-    addBtn.style.visibility = "none";
+    addBtn.style.display = "none";
 
     const infoModalBody = document.getElementById("addModalBody");
     infoModalBody.innerHTML = "";
