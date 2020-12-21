@@ -354,9 +354,11 @@ function showTableRowInformation(row) {
             const groupName = row.cells[0].innerHTML;
             console.log(`for ${currentTableName} with name: ${groupName}`);
             infoModalTitle.innerText = `Information about ${groupName}`;
-            sendRequest("GET", "/api/v1/lineup", groupName, true, (text) => {
+            const data = {
+                groupName: groupName
+            }
+            sendRequest("GET", "/api/v1/lineup", data, true, (text) => {
                 console.log("Callback for GET to /lineup");
-
                 const lineupData = JSON.parse(text);
                 console.log(lineupData);
             });
