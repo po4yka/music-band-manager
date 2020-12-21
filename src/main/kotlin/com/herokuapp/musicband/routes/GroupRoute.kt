@@ -32,7 +32,7 @@ fun Route.groups() {
         println(removeQuotesAndUnescape(json))
         val bookRequest = Gson().fromJson(json, Group::class.java)
         println(bookRequest)
-        // groupService.addGroup(bookRequest)
+        groupService.addGroup(bookRequest)
         call.respond(HttpStatusCode.Accepted)
     }
 
