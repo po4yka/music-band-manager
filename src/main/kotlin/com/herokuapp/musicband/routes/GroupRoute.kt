@@ -32,7 +32,11 @@ fun Route.groups() {
         println(removeQuotesAndUnescape(json))
         val bookRequest = Gson().fromJson(json, Group::class.java)
         println(bookRequest)
-        groupService.addGroup(bookRequest)
+        try {
+            groupService.addGroup(bookRequest)
+        } catch (exp: java.sql.BatchUpdateException) {
+            call.respond(HttpStatusCode.InternalServerError, "Incorrect key for new Group")
+        }
         call.respond(HttpStatusCode.Accepted, "Group was successfully added")
     }
 
