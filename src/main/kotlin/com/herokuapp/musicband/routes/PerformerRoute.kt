@@ -1,5 +1,7 @@
 package com.herokuapp.musicband.routes
 
+import com.google.gson.Gson
+import com.herokuapp.musicband.data.GroupName
 import com.herokuapp.musicband.data.Performer
 import com.herokuapp.musicband.services.PerformerService
 import io.ktor.application.call
@@ -21,6 +23,16 @@ fun Route.performers() {
         val allPerformers = performerService.getPerformersWithGroups()
         println("GET all performers")
         call.respond(allPerformers)
+    }
+
+    get("lineup") {
+        println("GET /lineup")
+        val json = call.receive<String>()
+        println(json)
+        val lineupRequest = Gson().fromJson(json, GroupName::class.java)
+        println(lineupRequest)
+        val lineup = performerService.getLineup(lineupRequest.name)
+        call.respond(lineup)
     }
 
     post("performer") {

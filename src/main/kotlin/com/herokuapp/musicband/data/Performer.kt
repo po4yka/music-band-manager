@@ -58,3 +58,8 @@ data class PerformerOut(
     val role: String,
     val groupName: String
 )
+
+data class Lineup(
+    val fullName: String,
+    val role: String
+)

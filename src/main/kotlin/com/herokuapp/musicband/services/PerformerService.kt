@@ -1,11 +1,13 @@
 package com.herokuapp.musicband.services
 
 import com.herokuapp.musicband.data.Groups
+import com.herokuapp.musicband.data.Lineup
 import com.herokuapp.musicband.data.Performer
 import com.herokuapp.musicband.data.PerformerEntity
 import com.herokuapp.musicband.data.PerformerOut
 import com.herokuapp.musicband.data.Performers
 import org.jetbrains.exposed.sql.JoinType
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -24,6 +26,16 @@ class PerformerService {
                 it[Performers.birthday],
                 it[Performers.role],
                 it[Groups.groupName])
+            }
+    }
+
+    fun getLineup(groupName: String): Iterable<Lineup> = transaction {
+        Performers.join(Groups, JoinType.INNER, additionalConstraint = { Performers.groupId eq Groups.id })
+            .slice(Performers.fullName, Performers.role)
+            .select { Groups.groupName eq groupName }
+            .map { Lineup(
+                it[Performers.fullName],
+                it[Performers.role])
             }
     }
 

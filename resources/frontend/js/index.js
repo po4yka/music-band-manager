@@ -353,6 +353,12 @@ function showTableRowInformation(row) {
         case "groups":
             console.log(`for ${currentTableName} with name: ${row.cells[0].innerHTML}`);
             infoModalTitle.innerText = `Information about ${row.cells[0].innerHTML}`;
+            sendRequest("GET", "/api/v1/lineup", "", true, (text) => {
+                console.log("Callback for GET to /lineup");
+
+                const lineupData = JSON.parse(text);
+                console.log(lineupData);
+            });
             break;
         case "performers":
             break;

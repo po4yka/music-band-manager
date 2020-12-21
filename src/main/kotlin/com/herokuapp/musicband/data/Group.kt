@@ -39,3 +39,7 @@ data class Group(
     val country: String,
     val hitParadePlace: Int
 )
+
+data class GroupName(
+    val name: String
+)
