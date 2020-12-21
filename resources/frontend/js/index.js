@@ -306,7 +306,7 @@ function addNewElementRequest() {
             const dateSplit = groupCreationDate.value.split('-');
             const data = {
                 groupName: groupName.value,
-                creationTime: `{year: ${dateSplit[0]}, month: ${dateSplit[1]}, day: ${dateSplit[2]}`,
+                creationTime: `{year: ${dateSplit[0]}, month: ${dateSplit[1]}, day: ${dateSplit[2]}}`,
                 country: groupCountry.value,
                 hitParadePlace: groupHitParade.value
             }
