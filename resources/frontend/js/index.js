@@ -315,6 +315,7 @@ function addNewElementRequest() {
                 console.log(text);
             });
             groupsData = null;
+            updateTable("groups");
             break;
         case "performers":
             const performerName = document.getElementById("enterPerfNameModal");

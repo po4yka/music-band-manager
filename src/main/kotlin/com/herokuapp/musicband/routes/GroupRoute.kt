@@ -34,8 +34,9 @@ fun Route.groups() {
         println(bookRequest)
         try {
             groupService.addGroup(bookRequest)
-        } catch (exp: java.sql.BatchUpdateException) {
+        } catch (exp: java.sql.SQLException) {
             call.respond(HttpStatusCode.InternalServerError, "Incorrect key for new Group")
+            return@post
         }
         call.respond(HttpStatusCode.Accepted, "Group was successfully added")
     }
