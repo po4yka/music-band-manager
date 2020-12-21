@@ -381,6 +381,7 @@ function showTableRowInformation(row) {
                     date.setUTCSeconds(el.birthday.seconds);
                     const today = new Date();
                     const age = today.getFullYear() - date.getFullYear();
+                    console.log(`today: ${today.getFullYear()}; date: ${date.getFullYear()}`);
                     li.textContent = `${el.fullName}, ${el.role}, age: ${age}`;
                     ul.append(li);
                 }
