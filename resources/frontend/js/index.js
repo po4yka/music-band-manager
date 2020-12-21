@@ -290,6 +290,7 @@ function addNewElementMainOpen() {
 }
 
 function addNewElementRequest() {
+    console.log("addNewElementRequest was called");
     switch (currentTableName) {
         case "groups":
             const groupName = document.getElementById("enterGroupNameModal");
