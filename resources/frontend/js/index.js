@@ -362,6 +362,16 @@ function showTableRowInformation(row) {
                 console.log("Callback for GET to /lineup");
                 const lineupData = JSON.parse(text);
                 console.log(lineupData);
+                const header = document.createElement('h5');
+                header.innerText = "Band lineup";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of lineupData) {
+                    let li = document.createElement('li');
+                    li.textContent = `${el.fullName}, ${el.role}`;
+                    ul.append(li);
+                }
             });
             break;
         case "performers":
