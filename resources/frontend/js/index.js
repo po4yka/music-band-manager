@@ -1,5 +1,3 @@
-import * as util from 'util';
-
 let currentTableName = null;
 
 let groupsData = null;
