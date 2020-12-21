@@ -1,6 +1,6 @@
 package com.herokuapp.musicband.routes
 
-import com.beust.klaxon.Klaxon
+import com.google.gson.Gson
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.services.GroupService
 import io.ktor.application.call
@@ -27,9 +27,9 @@ fun Route.groups() {
 
     post("group") {
         println("POST /group")
-        val requestStr = call.receive<String>()
-        println(requestStr)
-        val bookRequest = Klaxon().parse<Group>(requestStr)
+        val json = call.receive<String>()
+        println(json)
+        val bookRequest = Gson().fromJson(json, Group::class.java)
         println(bookRequest)
         // groupService.addGroup(bookRequest)
         call.respond(HttpStatusCode.Accepted)
