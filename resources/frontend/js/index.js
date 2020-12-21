@@ -134,6 +134,19 @@ function generateTableBody(table, tableInfo, columnCount) {
     console.log("generateTableBody was called");
     for (let element of tableInfo) {
         let tRow = table.insertRow();
+        switch (currentTableName) {
+            case "groups":
+                tRow.setAttribute("data-toggle", "modal");
+                tRow.setAttribute("data-target", "#addModal");
+                break;
+            case "performers":
+                break;
+        }
+        tRow.onclick = function() {
+            return function () {
+                showTableRowInformation(tRow);
+            }
+        };
         const cells = []
         for (let j = 0; j < columnCount; ++j) {
             cells[j] = tRow.insertCell(j);
@@ -328,6 +341,21 @@ function addNewElementRequest() {
                 alert("Fields can't be null!");
                 return;
             }
+            break;
+    }
+}
+
+function showTableRowInformation(row) {
+    console.log("showTableRowInformation was called");
+    const infoModalBody = document.getElementById("addModalBody");
+    const infoModalTitle = document.getElementById("addModalTitleLabel");
+    switch (currentTableName) {
+        case "groups":
+            const cells = row.getElementsByTagName("td");
+            console.log(`for ${currentTableName} with name: ${cells[0]}`);
+            infoModalTitle.innerText = `Information about ${cells[0]}`;
+            break;
+        case "performers":
             break;
     }
 }
