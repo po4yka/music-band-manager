@@ -310,9 +310,9 @@ function addNewElementRequest() {
                 country: groupCountry.value,
                 hitParadePlace: groupHitParade.value
             }
-            sendRequest("POST", "/api/v1/group", JSON.stringify(data), true, (text) => {
+            sendRequest("POST", "/api/v1/group", data, true, (text) => {
                 console.log("Callback for POST to /group");
-                // TODO: answer work
+                console.log(text);
             });
             break;
         case "performers":
