@@ -303,9 +303,11 @@ function addNewElementRequest() {
                 alert("Fields can't be null!");
                 return;
             }
+            const dateSplit = groupCreationDate.value.split('-');
+            const date = new Date(dateSplit[0], dateSplit[1], dateSplit[2]);
             const data = {
                 "groupName": groupName.value,
-                "creationTime": groupCreationDate.value,
+                "creationTime": date,
                 "country": groupCountry.value,
                 "hitParadePlace": groupHitParade.value
             }
