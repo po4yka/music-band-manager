@@ -28,10 +28,11 @@ fun Route.performers() {
     get("lineup") {
         println("GET /lineup")
         val json = call.receive<String>()
+        println(json)
         if (json.isEmpty()) {
+            call.respond(HttpStatusCode.BadRequest)
             return@get
         }
-        println(json)
         val lineupRequest = Gson().fromJson(json, GroupName::class.java)
         println(lineupRequest)
         val lineup = performerService.getLineup(lineupRequest.name)
