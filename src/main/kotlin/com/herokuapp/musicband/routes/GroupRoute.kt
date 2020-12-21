@@ -1,9 +1,11 @@
 package com.herokuapp.musicband.routes
 
+import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.services.GroupService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
 import io.ktor.http.HttpStatusCode
+import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Route
 import io.ktor.routing.delete
@@ -23,9 +25,10 @@ fun Route.groups() {
     }
 
     post("group") {
-        // val bookRequest = call.receive<Group>()
+        val bookRequest = call.receive<Group>()
         // groupService.addGroup(bookRequest)
-        println("POST group")
+        println("POST /group")
+        println(bookRequest)
         call.respond(HttpStatusCode.Accepted)
     }
 

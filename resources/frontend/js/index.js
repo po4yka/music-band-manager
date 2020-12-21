@@ -271,10 +271,10 @@ function addNewElementMainOpen() {
         case "groups":
             console.log("Add new group triggered");
             addElementTitle.innerText = "Add new group";
-            addElementBody.innerHTML = "<input type='text' class='form-control' id='enterGroupNameModal' placeholder='Group name'> required" +
-                "<input type='date' class='form-control' id='enterGroupCreationModal' placeholder='Creation date'> required" +
-                "<input type='text' class='form-control' id='enterGroupCountryModal' placeholder='Country'> required" +
-                "<input type='number' class='form-control' id='enterGroupHitModal' placeholder='Hit parade'> required";
+            addElementBody.innerHTML = "<input type='text' class='form-control' id='enterGroupNameModal' placeholder='Group name' required>" +
+                "<input type='date' class='form-control' id='enterGroupCreationModal' placeholder='Creation date' required>" +
+                "<input type='text' class='form-control' id='enterGroupCountryModal' placeholder='Country' required>" +
+                "<input type='number' class='form-control' id='enterGroupHitModal' placeholder='Hit parade' required>";
             break;
         case "performers":
             console.log("Add new performer triggered");
@@ -296,7 +296,9 @@ function addNewElementRequest() {
             const groupCreationDate = document.getElementById("enterGroupCreationModal");
             const groupCountry = document.getElementById("enterGroupCountryModal");
             const groupHitParade = document.getElementById("enterGroupHitModal");
-            if (groupName === null || groupCreationDate === null || groupCountry === null || groupHitParade === null) {
+            if (groupName === null || groupCreationDate === null || groupCountry === null || groupHitParade === null ||
+                groupName.value === "" || groupCreationDate.value === "" ||
+                groupCountry.value === "" || groupHitParade.value === "") {
                 alert("Fields can't be null!");
                 return;
             }
@@ -306,7 +308,7 @@ function addNewElementRequest() {
                 "groupCountry": groupCountry,
                 "groupHitParade": groupHitParade
             }
-            sendRequest("POST", "/api/v1/group", data, true, (text) => {
+            sendRequest("POST", "/api/v1/group", JSON.stringify(data), true, (text) => {
                 console.log("Callback for POST to /group");
                 // TODO: answer work
             });
