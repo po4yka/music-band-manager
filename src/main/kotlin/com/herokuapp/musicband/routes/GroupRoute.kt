@@ -13,7 +13,6 @@ import io.ktor.routing.Route
 import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
-import org.jetbrains.exposed.exceptions.ExposedSQLException
 import org.kodein.di.instance
 import org.kodein.di.ktor.di
 

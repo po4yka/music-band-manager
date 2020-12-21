@@ -22,7 +22,6 @@ class GroupService {
                 }
             }
         } catch (exp: ExposedSQLException) {
-
         }
     }
 
