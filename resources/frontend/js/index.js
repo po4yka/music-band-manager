@@ -277,6 +277,10 @@ function fillSelectForAddPerformer(select) {
 
 function addNewElementMainOpen() {
     console.log(`addNewElementMain was called for ${currentTableName}`);
+
+    const addBtn = document.getElementById("addBtnInModal");
+    addBtn.style.display = "block";
+
     const addElementBody = document.getElementById("addModalBody");
     const addElementTitle = document.getElementById("addModalTitleLabel");
     switch (currentTableName) {
@@ -303,9 +307,6 @@ function addNewElementMainOpen() {
 
 function addNewElementRequest() {
     console.log("addNewElementRequest was called");
-
-    const addBtn = document.getElementById("addBtnInModal");
-    addBtn.style.display = "block";
 
     switch (currentTableName) {
         case "groups":
