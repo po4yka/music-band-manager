@@ -303,6 +303,10 @@ function addNewElementMainOpen() {
 
 function addNewElementRequest() {
     console.log("addNewElementRequest was called");
+
+    const addBtn = document.getElementById("addBtnInModal");
+    addBtn.style.visibility = "block";
+    
     switch (currentTableName) {
         case "groups":
             const groupName = document.getElementById("enterGroupNameModal");
@@ -346,6 +350,10 @@ function addNewElementRequest() {
 
 function showTableRowInformation(row) {
     console.log("showTableRowInformation was called");
+
+    const addBtn = document.getElementById("addBtnInModal");
+    addBtn.style.visibility = "none";
+
     const infoModalBody = document.getElementById("addModalBody");
     infoModalBody.innerHTML = "";
     const infoModalTitle = document.getElementById("addModalTitleLabel");

@@ -83,7 +83,7 @@ fun HTML.index() {
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="addNewElementRequest()">Add</button>
+                        <button type="button" id="addBtnInModal" class="btn btn-primary" data-dismiss="modal" onclick="addNewElementRequest()">Add</button>
                       </div>
                     </div>
                   </div>
