@@ -35,6 +35,7 @@ fun Route.performers() {
         val lineupRequest = Gson().fromJson(json, GroupName::class.java)
         println(lineupRequest)
         val lineup = performerService.getLineup(lineupRequest.name)
+        println("Lineup: $lineup")
         call.respond(lineup)
     }
 
