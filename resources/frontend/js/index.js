@@ -304,10 +304,10 @@ function addNewElementRequest() {
                 return;
             }
             const data = {
-                "groupName": groupName,
-                "groupCreationDate": groupCreationDate,
-                "groupCountry": groupCountry,
-                "groupHitParade": groupHitParade
+                "groupName": groupName.value,
+                "creationTime": groupCreationDate.value,
+                "country": groupCountry.value,
+                "hitParadePlace": groupHitParade.value
             }
             sendRequest("POST", "/api/v1/group", JSON.stringify(data), true, (text) => {
                 console.log("Callback for POST to /group");
