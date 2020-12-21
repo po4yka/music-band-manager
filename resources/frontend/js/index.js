@@ -143,6 +143,7 @@ function generateTableBody(table, tableInfo, columnCount) {
                 break;
         }
         tRow.onclick = function() {
+            console.log("click on table row");
             return function () {
                 showTableRowInformation(tRow);
             }
