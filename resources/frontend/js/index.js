@@ -23,7 +23,7 @@ function sendRequest(requestType, URL, data = "", sync = true,
 
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             callback(this.responseText);
         }
     }
@@ -314,6 +314,7 @@ function addNewElementRequest() {
                 console.log("Callback for POST to /group");
                 console.log(text);
             });
+            groupsData = null;
             break;
         case "performers":
             const performerName = document.getElementById("enterPerfNameModal");
