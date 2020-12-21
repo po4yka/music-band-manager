@@ -25,9 +25,9 @@ fun Route.groups() {
     }
 
     post("group") {
-        val bookRequest = call.receive<Group>()
-        // groupService.addGroup(bookRequest)
         println("POST /group")
+        val bookRequest = call.receive<String>()
+        // groupService.addGroup(bookRequest)
         println(bookRequest)
         call.respond(HttpStatusCode.Accepted)
     }

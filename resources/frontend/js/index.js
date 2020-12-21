@@ -315,6 +315,16 @@ function addNewElementRequest() {
             });
             break;
         case "performers":
+            const performerName = document.getElementById("enterPerfNameModal");
+            const performerBirthday = document.getElementById("enterPerfBirthModal");
+            const performerRole = document.getElementById("enterPerfRoleModal");
+            const performerGroup = document.getElementById("addModalSelect");
+            if (performerName === null || performerBirthday === null || performerRole === null || performerGroup === null ||
+                performerName.value === "" || performerBirthday.value === "" ||
+                performerRole.value === "" || performerGroup.value === "") {
+                alert("Fields can't be null!");
+                return;
+            }
             break;
     }
 }
