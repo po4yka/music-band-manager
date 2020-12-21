@@ -351,9 +351,8 @@ function showTableRowInformation(row) {
     const infoModalTitle = document.getElementById("addModalTitleLabel");
     switch (currentTableName) {
         case "groups":
-            const cells = row.getElementsByTagName("td");
-            console.log(`for ${currentTableName} with name: ${cells[0].value}`);
-            infoModalTitle.innerText = `Information about ${cells[0].value}`;
+            console.log(`for ${currentTableName} with name: ${row.cells[0]}`);
+            infoModalTitle.innerText = `Information about ${row.cells[0]}`;
             break;
         case "performers":
             break;
