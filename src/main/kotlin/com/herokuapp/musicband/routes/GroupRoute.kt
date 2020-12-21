@@ -1,6 +1,5 @@
 package com.herokuapp.musicband.routes
 
-import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.services.GroupService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
