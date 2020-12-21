@@ -355,8 +355,9 @@ function showTableRowInformation(row) {
             console.log(`for ${currentTableName} with name: ${groupName}`);
             infoModalTitle.innerText = `Information about ${groupName}`;
             const data = {
-                groupName: groupName
+                name: groupName
             }
+            console.log(`sending to lineup: ${data}`);
             sendRequest("GET", "/api/v1/lineup", data, true, (text) => {
                 console.log("Callback for GET to /lineup");
                 const lineupData = JSON.parse(text);
