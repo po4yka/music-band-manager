@@ -358,7 +358,7 @@ function showTableRowInformation(row) {
                 name: groupName
             }
             console.log(`sending to lineup: ${data}`);
-            sendRequest("GET", "/api/v1/lineup", data, true, (text) => {
+            sendRequest("POST", "/api/v1/lineup", data, true, (text) => {
                 console.log("Callback for GET to /lineup");
                 const lineupData = JSON.parse(text);
                 console.log(lineupData);
