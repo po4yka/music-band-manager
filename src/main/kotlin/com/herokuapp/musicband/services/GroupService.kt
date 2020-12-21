@@ -2,7 +2,6 @@ package com.herokuapp.musicband.services
 
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.data.GroupEntity
-import java.sql.SQLException
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class GroupService {
