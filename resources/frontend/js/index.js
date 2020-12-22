@@ -401,18 +401,18 @@ function showTableRowInformation(row) {
             });
             sendRequest("POST", "/api/v1/lastconcertcost", data, true, (text) => {
                 console.log("Callback for POST to /lastconcertcost");
-                const lastConcertTickerCostData = JSON.parse(text);
+                const lastConcertTickerCostData = JSON.parse(text)[0];
                 console.log(lastConcertTickerCostData);
                 const header = document.createElement('h5');
                 header.innerText = "Last concert ticket cost";
                 infoModalBody.append(header);
                 const paragraph = document.createElement('p');
-                paragraph.innerText = `Last concert at ${lastConcertTickerCostData[0].place} cost ${lastConcertTickerCostData[0].ticketCost}`;
+                paragraph.innerText = `Last concert at ${lastConcertTickerCostData.place} cost ${lastConcertTickerCostData.ticketCost}`;
                 infoModalBody.append(paragraph);
             })
             sendRequest("POST", "/api/v1/lasttourinfo", data, true, (text) => {
                 console.log("Callback for POST to /lasttourinfo");
-                const lastTourData = JSON.parse(text);
+                const lastTourData = JSON.parse(text)[0];
                 console.log(lastTourData);
                 const header = document.createElement('h5');
                 header.innerText = "Last tour information";
