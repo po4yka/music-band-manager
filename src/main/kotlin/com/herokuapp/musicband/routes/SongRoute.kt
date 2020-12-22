@@ -1,6 +1,7 @@
 package com.herokuapp.musicband.routes
 
 import com.google.gson.Gson
+import com.herokuapp.musicband.data.GroupName
 import com.herokuapp.musicband.data.RepertoireSong
 import com.herokuapp.musicband.data.Song
 import com.herokuapp.musicband.services.SongService
@@ -38,6 +39,21 @@ fun Route.songs() {
         val repertoire = songService.getRepertoire(repertoireRequest.name)
         println("Repertoire: $repertoire")
         call.respond(repertoire)
+    }
+
+    post("lasttourrep") {
+        println("POST /lasttourrep")
+        val json = call.receive<String>()
+        println(json)
+        if (json.isEmpty()) {
+            call.respond(HttpStatusCode.BadRequest)
+            return@post
+        }
+        val lastTourRepRequest = Gson().fromJson(json, GroupName::class.java)
+        println(lastTourRepRequest)
+        val lastTourRepertoire = songService.getLastTourRepertoire(lastTourRepRequest.name)
+        println("Last tour repertoire: $lastTourRepertoire")
+        call.respond(lastTourRepertoire)
     }
 
     post("song") {

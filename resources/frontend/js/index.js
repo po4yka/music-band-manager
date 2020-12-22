@@ -449,6 +449,21 @@ function showTableRowInformation(row) {
                     ul.append(li);
                 }
             })
+            sendRequest("POST", "/api/v1/lasttourrep", data, true, (text) => {
+                console.log("Callback for POST to /lasttourrep");
+                const lastTourRepData = JSON.parse(text);
+                console.log(lastTourRepData);
+                const header = document.createElement('h5');
+                header.innerText = "Repertoire of the last tour";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of lastTourRepData) {
+                    let li = document.createElement('li');
+                    li.textContent = `${el.name}, ${el.author}`;
+                    ul.append(li);
+                }
+            })
             break;
         case "performers":
             break;

@@ -25,7 +25,8 @@ class ConcertService {
     fun getAllOutConcerts(): Iterable<ConcertOut> = transaction {
         Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { Concerts.tourProgramId eq TourPrograms.id })
             .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
-            .slice(Concerts.dateTime, Concerts.ticketsCount, Concerts.hallRentalCost, Concerts.ticketCost, Concerts.place, TourPrograms.name, Groups.groupName)
+            .slice(Concerts.dateTime, Concerts.ticketsCount, Concerts.hallRentalCost,
+                Concerts.ticketCost, Concerts.place, TourPrograms.name, Groups.groupName)
             .selectAll()
             .map { ConcertOut(
                     it[TourPrograms.name],
@@ -55,7 +56,9 @@ class ConcertService {
         val sequelTable = TourPrograms.alias("sql")
         Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { TourPrograms.id eq Concerts.tourProgramId })
             .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
-            .join(sequelTable, JoinType.LEFT, additionalConstraint = { (TourPrograms.groupId eq sequelTable[TourPrograms.groupId]) and (TourPrograms.endDate less sequelTable[TourPrograms.endDate]) })
+            .join(sequelTable, JoinType.LEFT, additionalConstraint = {
+                (TourPrograms.groupId eq sequelTable[TourPrograms.groupId]) and
+                    (TourPrograms.endDate less sequelTable[TourPrograms.endDate]) })
             .slice(Concerts.place, Concerts.dateTime)
             .select { (sequelTable[TourPrograms.endDate].isNull()) and (Groups.groupName eq groupName) }
             .map { TourConcerts(
