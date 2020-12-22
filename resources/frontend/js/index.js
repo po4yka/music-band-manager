@@ -420,7 +420,7 @@ function showTableRowInformation(row) {
                 const ul = document.createElement('ul');
                 infoModalBody.append(ul);
                 ul.append(document.createElement('li').textContent = `Tour name: ${lastTourData.name}`);
-                ul.append(document.createElement('li').textContent = `Timeline: from ${lastTourData.startDate.toUTCString()}, to ${lastTourData.endDate.toUTCString()}`);
+                ul.append(document.createElement('li').textContent = `Timeline: from ${lastTourData.startDate.day}-${lastTourData.startDate.month}-${lastTourData.startDate.year}, to ${lastTourData.endDate.day}-${lastTourData.endDate.month}-${lastTourData.endDate.year}`);
                 ul.append(document.createElement('li').textContent = `Revenu for tour is: ${lastTourData.revenu}`);
                 ul.append(document.createElement('li').textContent = `Was sold: ${lastTourData.sumTicketsSold} tickets at all with avg cost: ${lastTourData.avgTicketCost}`);
             })
