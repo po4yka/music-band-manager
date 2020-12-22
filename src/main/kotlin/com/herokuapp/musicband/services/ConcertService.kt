@@ -55,7 +55,7 @@ class ConcertService {
         val sequelTable = TourPrograms.alias("sql")
         Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { TourPrograms.id eq Concerts.tourProgramId })
             .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
-            .join(TourPrograms, JoinType.LEFT, additionalConstraint = { (TourPrograms.groupId eq sequelTable[TourPrograms.groupId]) and (TourPrograms.endDate less sequelTable[TourPrograms.endDate]) })
+            .join(sequelTable, JoinType.LEFT, additionalConstraint = { (TourPrograms.groupId eq sequelTable[TourPrograms.groupId]) and (TourPrograms.endDate lessEq sequelTable[TourPrograms.endDate]) })
             .slice(Concerts.place, Concerts.dateTime)
             .select { (sequelTable[TourPrograms.endDate].isNull()) and (Groups.groupName eq groupName) }
             .map { TourConcerts(
