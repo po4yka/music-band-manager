@@ -422,7 +422,7 @@ function showTableRowInformation(row) {
                 const liTourName = document.createElement('li');
                 liTourName.innerText = `Tour name: ${lastTourData.name}`;
                 const liDates = document.createElement('li');
-                liDates.innerText = `Timeline: from ${lastTourData.startDate.day}-${lastTourData.startDate.month}-${lastTourData.startDate.year}, to ${lastTourData.endDate.day}-${lastTourData.endDate.month}-${lastTourData.endDate.year}`;
+                liDates.innerText = `Timeline: from ${lastTourData.startDate.day}-${lastTourData.startDate.month}-${lastTourData.startDate.year} to ${lastTourData.endDate.day}-${lastTourData.endDate.month}-${lastTourData.endDate.year}`;
                 const liRevenue = document.createElement('li');
                 liRevenue.textContent = `Revenu for tour is: ${lastTourData.revenue}`;
                 const liTickets = document.createElement('li');
@@ -431,6 +431,11 @@ function showTableRowInformation(row) {
                 ul.append(liDates);
                 ul.append(liRevenue);
                 ul.append(liTickets);
+            })
+            sendRequest("POST", "/api/v1/lasttourplacedate", data, true, (text) => {
+                console.log("Callback for POST to /lasttourplacedate");
+                const lastTourPlaceTimeData = JSON.parse(text)[0];
+                console.log(lastTourPlaceTimeData);
             })
             break;
         case "performers":

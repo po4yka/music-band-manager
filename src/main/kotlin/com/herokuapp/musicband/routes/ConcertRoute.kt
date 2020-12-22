@@ -39,6 +39,21 @@ fun Route.concerts() {
         call.respond(ticketCost)
     }
 
+    post("lasttourplacedate") {
+        println("POST /lasttourplacedate")
+        val json = call.receive<String>()
+        println(json)
+        if (json.isEmpty()) {
+            call.respond(HttpStatusCode.BadRequest)
+            return@post
+        }
+        val lastTourPlacesDatesRequest = Gson().fromJson(json, GroupName::class.java)
+        println(lastTourPlacesDatesRequest)
+        val lastTourPlacesDate = concertService.getLastTourPlaceDate(lastTourPlacesDatesRequest.name)
+        println(lastTourPlacesDate)
+        call.respond(lastTourPlacesDate)
+    }
+
     post("concert") {
         val concertRequest = call.receive<Concert>()
         concertService.addConcert(concertRequest)

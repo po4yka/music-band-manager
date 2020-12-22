@@ -6,9 +6,12 @@ import com.herokuapp.musicband.data.ConcertOut
 import com.herokuapp.musicband.data.Concerts
 import com.herokuapp.musicband.data.Groups
 import com.herokuapp.musicband.data.TicketCost
+import com.herokuapp.musicband.data.TourConcerts
 import com.herokuapp.musicband.data.TourPrograms
 import org.jetbrains.exposed.sql.JoinType
 import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.alias
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -46,6 +49,18 @@ class ConcertService {
             .map { TicketCost(
                 it[Concerts.ticketCost],
                 it[Concerts.place]) }
+    }
+
+    fun getLastTourPlaceDate(groupName: String): Iterable<TourConcerts> = transaction {
+        val sequelTable = TourPrograms.alias("sql")
+        Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { TourPrograms.id eq Concerts.tourProgramId })
+            .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
+            .join(sequelTable, JoinType.LEFT, additionalConstraint = { (TourPrograms.groupId eq sequelTable[TourPrograms.groupId]) and (TourPrograms.endDate less sequelTable[TourPrograms.endDate]) })
+            .select { (sequelTable[TourPrograms.endDate].isNull()) and (Groups.groupName eq groupName) }
+            .map { TourConcerts(
+                it[Concerts.place],
+                it[Concerts.dateTime]
+            ) }
     }
 
     fun addConcert(concert: Concert) = transaction {

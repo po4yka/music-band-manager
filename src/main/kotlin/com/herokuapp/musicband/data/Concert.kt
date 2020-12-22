@@ -60,3 +60,8 @@ data class TicketCost(
     var ticketCost: Int,
     var place: String
 )
+
+data class TourConcerts(
+    var place: String,
+    var dateTime: Instant
+)
