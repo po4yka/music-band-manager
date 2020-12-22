@@ -345,6 +345,19 @@ function addNewElementRequest() {
                 alert("Fields can't be null!");
                 return;
             }
+            const birthdaySplit = performerBirthday.value.split('-');
+            const performerData = {
+                fullName: performerName.value,
+                birthday: {year: birthdaySplit[0], month: birthdaySplit[1], day: birthdaySplit[2]},
+                role: performerRole.value,
+                groupName: performerGroup.value
+            }
+            sendRequest("POST", "/api/v1/performer", data, true, (text) => {
+                console.log("Callback for POST to /performer");
+                console.log(text);
+            });
+            performersData = null;
+            updateTable("performers");
             break;
     }
 }
