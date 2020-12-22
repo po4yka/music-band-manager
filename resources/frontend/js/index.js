@@ -436,6 +436,18 @@ function showTableRowInformation(row) {
                 console.log("Callback for POST to /lasttourplacedate");
                 const lastTourPlaceTimeData = JSON.parse(text);
                 console.log(lastTourPlaceTimeData);
+                const header = document.createElement('h5');
+                header.innerText = "Places and dates of last tour";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of lastTourPlaceTimeData) {
+                    const date = new Date(0);
+                    date.setUTCSeconds(el.dateTime.seconds);
+                    let li = document.createElement('li');
+                    li.textContent = `${el.place}, ${date.toUTCString()}`;
+                    ul.append(li);
+                }
             })
             break;
         case "performers":
