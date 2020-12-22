@@ -410,6 +410,13 @@ function showTableRowInformation(row) {
                 paragraph.innerText = `Last concert at ${lastConcertTickerCostData[0].place} cost ${lastConcertTickerCostData[0].ticketCost}`;
                 infoModalBody.append(paragraph);
             })
+            sendRequest("POST", "/api/v1/lasttourinfo", data, true, (text) => {
+                console.log("Callback for POST to /lastconcertcost");
+                const lastTourData = JSON.parse(text);
+                console.log(lastTourData);
+                const header = document.createElement('h5');
+                header.innerText = "Last tour information";
+            })
             break;
         case "performers":
             break;

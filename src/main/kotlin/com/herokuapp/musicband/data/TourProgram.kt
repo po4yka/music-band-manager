@@ -46,3 +46,12 @@ data class TourProgramOut(
     val startDate: LocalDate,
     val endDate: LocalDate
 )
+
+data class TourProgramInfo(
+    val name: String,
+    val startDate: LocalDate,
+    val endDate: LocalDate,
+    val revenue: Int,
+    val sumTicketsSold: Int,
+    val avgTicketCost: Double
+)
