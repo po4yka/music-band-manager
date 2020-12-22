@@ -411,11 +411,18 @@ function showTableRowInformation(row) {
                 infoModalBody.append(paragraph);
             })
             sendRequest("POST", "/api/v1/lasttourinfo", data, true, (text) => {
-                console.log("Callback for POST to /lastconcertcost");
+                console.log("Callback for POST to /lasttourinfo");
                 const lastTourData = JSON.parse(text);
                 console.log(lastTourData);
                 const header = document.createElement('h5');
                 header.innerText = "Last tour information";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                ul.append(document.createElement('li').textContent = `Tour name: ${lastTourData.name}`);
+                ul.append(document.createElement('li').textContent = `Timeline: from ${lastTourData.startDate.toUTCString()}, to ${lastTourData.endDate.toUTCString()}`);
+                ul.append(document.createElement('li').textContent = `Revenu for tour is: ${lastTourData.revenu}`);
+                ul.append(document.createElement('li').textContent = `Was sold: ${lastTourData.sumTicketsSold} tickets at all with avg cost: ${lastTourData.avgTicketCost}`);
             })
             break;
         case "performers":
