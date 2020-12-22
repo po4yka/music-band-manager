@@ -352,7 +352,7 @@ function addNewElementRequest() {
                 role: performerRole.value,
                 groupName: performerGroup.value
             }
-            sendRequest("POST", "/api/v1/performer", data, true, (text) => {
+            sendRequest("POST", "/api/v1/performer", performerData, true, (text) => {
                 console.log("Callback for POST to /performer");
                 console.log(text);
             });
