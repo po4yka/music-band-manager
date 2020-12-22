@@ -7,7 +7,6 @@ import com.herokuapp.musicband.data.PerformerEntity
 import com.herokuapp.musicband.data.PerformerOut
 import com.herokuapp.musicband.data.Performers
 import org.jetbrains.exposed.sql.JoinType
-import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -42,7 +41,7 @@ class PerformerService {
     }
 
     fun addPerformer(performer: PerformerOut) = transaction {
-        val groupId = Groups.select { Groups.groupName eq performer.groupName}.single()[Groups.id]
+        val groupId = Groups.select { Groups.groupName eq performer.groupName }.single()[Groups.id]
         PerformerEntity.new {
             this.fullName = performer.fullName
             this.birthday = performer.birthday
