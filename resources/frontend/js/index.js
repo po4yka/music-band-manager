@@ -419,10 +419,18 @@ function showTableRowInformation(row) {
                 infoModalBody.append(header);
                 const ul = document.createElement('ul');
                 infoModalBody.append(ul);
-                ul.append(document.createElement('li').textContent = `Tour name: ${lastTourData.name}`);
-                ul.append(document.createElement('li').textContent = `Timeline: from ${lastTourData.startDate.day}-${lastTourData.startDate.month}-${lastTourData.startDate.year}, to ${lastTourData.endDate.day}-${lastTourData.endDate.month}-${lastTourData.endDate.year}`);
-                ul.append(document.createElement('li').textContent = `Revenu for tour is: ${lastTourData.revenu}`);
-                ul.append(document.createElement('li').textContent = `Was sold: ${lastTourData.sumTicketsSold} tickets at all with avg cost: ${lastTourData.avgTicketCost}`);
+                const liTourName = document.createElement('li');
+                liTourName.innerText = `Tour name: ${lastTourData.name}`;
+                const liDates = document.createElement('li');
+                liDates.innerText = `Timeline: from ${lastTourData.startDate.day}-${lastTourData.startDate.month}-${lastTourData.startDate.year}, to ${lastTourData.endDate.day}-${lastTourData.endDate.month}-${lastTourData.endDate.year}`;
+                const liRevenue = document.createElement('li');
+                liRevenue.textContent = `Revenu for tour is: ${lastTourData.revenue}`;
+                const liTickets = document.createElement('li');
+                liTickets.innerText = `Was sold: ${lastTourData.sumTicketsSold} tickets at all with avg cost: ${lastTourData.avgTicketCost}`;
+                ul.append(liTourName);
+                ul.append(liDates);
+                ul.append(liRevenue);
+                ul.append(liTickets);
             })
             break;
         case "performers":
