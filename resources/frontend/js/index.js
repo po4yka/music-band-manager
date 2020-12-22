@@ -407,7 +407,7 @@ function showTableRowInformation(row) {
                 header.innerText = "Last concert ticket cost";
                 infoModalBody.append(header);
                 const paragraph = document.createElement('p');
-                paragraph.innerText = `Last concert at ${lastConcertTickerCostData.place} cost ${lastConcertTickerCostData.ticketCost}`;
+                paragraph.innerText = `Last concert at ${lastConcertTickerCostData[0].place} cost ${lastConcertTickerCostData[0].ticketCost}`;
                 infoModalBody.append(paragraph);
             })
             break;
