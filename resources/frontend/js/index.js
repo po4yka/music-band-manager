@@ -434,7 +434,7 @@ function showTableRowInformation(row) {
             })
             sendRequest("POST", "/api/v1/lasttourplacedate", data, true, (text) => {
                 console.log("Callback for POST to /lasttourplacedate");
-                const lastTourPlaceTimeData = JSON.parse(text)[0];
+                const lastTourPlaceTimeData = JSON.parse(text);
                 console.log(lastTourPlaceTimeData);
             })
             break;
