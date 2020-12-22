@@ -3,6 +3,7 @@ package com.herokuapp.musicband.routes
 import com.google.gson.Gson
 import com.herokuapp.musicband.data.GroupName
 import com.herokuapp.musicband.data.Performer
+import com.herokuapp.musicband.data.PerformerOut
 import com.herokuapp.musicband.services.PerformerService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
@@ -41,7 +42,7 @@ fun Route.performers() {
     }
 
     post("performer") {
-        val performerRequest = call.receive<Performer>()
+        val performerRequest = call.receive<PerformerOut>()
         performerService.addPerformer(performerRequest)
         call.respond(HttpStatusCode.Accepted)
     }
