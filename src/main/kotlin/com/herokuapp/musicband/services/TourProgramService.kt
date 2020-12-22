@@ -38,7 +38,7 @@ class TourProgramService {
         val revenue = Expression.build { Concerts.ticketsCount * Concerts.ticketCost - Concerts.hallRentalCost }
         TourPrograms.join(Concerts, JoinType.INNER, additionalConstraint = { Concerts.tourProgramId eq TourPrograms.id })
             .join(Groups, JoinType.INNER, additionalConstraint = { Groups.id eq TourPrograms.groupId })
-            .slice(TourPrograms.name, TourPrograms.startDate, TourPrograms.endDate, revenue, Concerts.ticketsCount.sum(), Concerts.ticketCost.avg())
+            .slice(TourPrograms.name, TourPrograms.startDate, TourPrograms.endDate, revenue.sum(), Concerts.ticketsCount.sum(), Concerts.ticketCost.avg())
             .select { Groups.groupName eq groupName }
             .groupBy(TourPrograms.id, TourPrograms.endDate)
             .orderBy(TourPrograms.endDate, SortOrder.DESC)
@@ -47,7 +47,7 @@ class TourProgramService {
                 it[TourPrograms.name],
                 it[TourPrograms.startDate],
                 it[TourPrograms.endDate],
-                it[revenue],
+                it[revenue.sum()]!!,
                 it[Concerts.ticketsCount.sum()]!!,
                 it[Concerts.ticketCost.avg()]!!.toDouble())
             }
