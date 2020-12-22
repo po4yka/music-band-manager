@@ -42,12 +42,13 @@ class TourProgramService {
             .select { Groups.groupName eq groupName }
             .groupBy(TourPrograms.id, TourPrograms.endDate)
             .orderBy(TourPrograms.endDate, SortOrder.DESC)
+            .limit(1)
             .map { TourProgramInfo(
                 it[TourPrograms.name],
                 it[TourPrograms.startDate],
                 it[TourPrograms.endDate],
                 it[revenue],
-                it[Concerts.ticketsCount.sum()] ?: 0,
+                it[Concerts.ticketsCount.sum()]!!,
                 it[Concerts.ticketCost.avg()]!!.toDouble())
             }
     }
