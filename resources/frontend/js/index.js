@@ -399,6 +399,17 @@ function showTableRowInformation(row) {
                     ul.append(li);
                 }
             });
+            sendRequest("POST", "/api/v1/lastconcertcost", data, true, (text) => {
+                console.log("Callback for POST to /lastconcertcost");
+                const lastConcertTickerCostData = JSON.parse(text);
+                console.log(lastConcertTickerCostData);
+                const header = document.createElement('h5');
+                header.innerText = "Last concert ticket cost";
+                infoModalBody.append(header);
+                const paragraph = document.createElement('p');
+                paragraph.innerText = `Last concert at ${lastConcertTickerCostData.place} cost ${lastConcertTickerCostData.ticketCost}`;
+                infoModalBody.append(paragraph);
+            })
             break;
         case "performers":
             break;

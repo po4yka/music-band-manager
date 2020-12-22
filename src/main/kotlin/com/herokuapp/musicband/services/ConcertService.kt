@@ -5,8 +5,11 @@ import com.herokuapp.musicband.data.ConcertEntity
 import com.herokuapp.musicband.data.ConcertOut
 import com.herokuapp.musicband.data.Concerts
 import com.herokuapp.musicband.data.Groups
+import com.herokuapp.musicband.data.TicketCost
 import com.herokuapp.musicband.data.TourPrograms
 import org.jetbrains.exposed.sql.JoinType
+import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -31,6 +34,18 @@ class ConcertService {
                     it[Concerts.ticketCost]
                 )
             }
+    }
+
+    fun getLastConcertTicketCost(groupName: String): Iterable<TicketCost> = transaction {
+        Concerts.join(TourPrograms, JoinType.INNER, additionalConstraint = { Concerts.tourProgramId eq TourPrograms.id })
+            .join(Groups, JoinType.INNER, additionalConstraint = { TourPrograms.groupId eq Groups.id })
+            .slice(Concerts.ticketCost, Concerts.place)
+            .select { Groups.groupName eq groupName }
+            .orderBy(Concerts.dateTime, SortOrder.DESC)
+            .limit(1)
+            .map { TicketCost(
+                it[Concerts.ticketCost],
+                it[Concerts.place]) }
     }
 
     fun addConcert(concert: Concert) = transaction {

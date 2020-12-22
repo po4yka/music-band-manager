@@ -55,3 +55,8 @@ data class ConcertOut(
     var hallRentalCost: Int,
     var ticketCost: Int
 )
+
+data class TicketCost(
+    var ticketCost: Int,
+    var place: String
+)

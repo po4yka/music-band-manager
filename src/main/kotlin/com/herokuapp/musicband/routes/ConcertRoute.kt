@@ -1,6 +1,8 @@
 package com.herokuapp.musicband.routes
 
+import com.google.gson.Gson
 import com.herokuapp.musicband.data.Concert
+import com.herokuapp.musicband.data.GroupName
 import com.herokuapp.musicband.services.ConcertService
 import io.ktor.application.call
 import io.ktor.features.NotFoundException
@@ -21,6 +23,20 @@ fun Route.concerts() {
         val allConcerts = concertService.getAllOutConcerts()
         println("GET all concerts")
         call.respond(allConcerts)
+    }
+
+    post("lastconcertcost") {
+        println("POST /lastconcertcost")
+        val json = call.receive<String>()
+        println(json)
+        if (json.isEmpty()) {
+            call.respond(HttpStatusCode.BadRequest)
+            return@post
+        }
+        val lastConcertCostRequest = Gson().fromJson(json, GroupName::class.java)
+        println(lastConcertCostRequest)
+        val ticketCost = concertService.getLastConcertTicketCost(lastConcertCostRequest.name)
+        call.respond(ticketCost)
     }
 
     post("concert") {
