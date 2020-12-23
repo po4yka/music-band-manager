@@ -20,14 +20,14 @@ fun Route.groups() {
     val groupService by di().instance<GroupService>()
 
     get("group") {
-        val allBooks = groupService.getAllGroups()
         println("GET all groups")
+        val allBooks = groupService.getAllGroups()
         call.respond(allBooks)
     }
 
     get("anniversary") {
-        val anniversaryGroups = groupService.getAnniversaryGroups()
         println("GET anniversary groups")
+        val anniversaryGroups = groupService.getAnniversaryGroups()
         call.respond(anniversaryGroups!!)
     }
 
