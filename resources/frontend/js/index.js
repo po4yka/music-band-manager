@@ -494,7 +494,7 @@ function showTableRowInformation(row) {
                 const performerData = {
                     fullName: row.cells[0].innerHTML,
                     birthday: { year: dateSplit[2], month: dateSplit[1], day: dateSplit[0] }
-                    newGroupName: changePerformerGroupSelect.value
+                    newGroupName: changePerformerGroupSelect.innerText
                 }
                 sendRequest("POST", "/api/v1/chggroup", performerData, true, (text) => {
                     console.log("Callback for POST to /chggroup");
