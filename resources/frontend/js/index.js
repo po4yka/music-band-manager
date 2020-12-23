@@ -278,9 +278,18 @@ function updateTable(tableName) {
 
             sendRequest("GET", "/api/v1/anniversary", "", true, (text) => {
                 console.log("Callback for GET to /anniversary");
-
                 const anniversaryGroups = JSON.parse(text);
                 console.log(anniversaryGroups);
+                const header = document.createElement('h5');
+                header.innerText = "Happy Anniversary Groups";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of anniversaryGroups) {
+                    let li = document.createElement('li');
+                    li.textContent = el.name;
+                    ul.append(li);
+                }
             });
 
             break;
