@@ -7,7 +7,6 @@ import com.herokuapp.musicband.data.Groups
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
-import sun.util.calendar.CalendarUtils.mod
 
 class GroupService {
 
@@ -28,8 +27,8 @@ class GroupService {
 
     fun getAnniversaryGroups(): Iterable<GroupName>? = transaction {
         TransactionManager.current().exec(
-            "SELECT group_name" +
-                "FROM groups" +
+            "SELECT group_name " +
+                "FROM groups " +
                 "WHERE MOD(CAST(DATE_PART('year', current_date) - DATE_PART('year', creation_time) as bigint), 10) = 0;"
         ) { rc ->
             val result = ArrayList<GroupName>()
