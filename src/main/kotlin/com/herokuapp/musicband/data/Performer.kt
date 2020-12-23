@@ -64,3 +64,9 @@ data class Lineup(
     val role: String,
     val birthday: LocalDate
 )
+
+data class PerformerChangeGroup(
+    val fullName: String,
+    val birthday: LocalDate,
+    val newGroupName: String
+)

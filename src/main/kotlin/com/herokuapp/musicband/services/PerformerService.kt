@@ -3,13 +3,16 @@ package com.herokuapp.musicband.services
 import com.herokuapp.musicband.data.Groups
 import com.herokuapp.musicband.data.Lineup
 import com.herokuapp.musicband.data.Performer
+import com.herokuapp.musicband.data.PerformerChangeGroup
 import com.herokuapp.musicband.data.PerformerEntity
 import com.herokuapp.musicband.data.PerformerOut
 import com.herokuapp.musicband.data.Performers
 import org.jetbrains.exposed.sql.JoinType
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 
 class PerformerService {
 
@@ -38,6 +41,13 @@ class PerformerService {
                 it[Performers.role],
                 it[Performers.birthday])
             }
+    }
+
+    fun chgGroup(performer: PerformerChangeGroup) = transaction {
+        val newGroupId = Groups.select { Groups.groupName eq performer.newGroupName }.single()[Groups.id]
+        Performers.update({ (Performers.fullName eq performer.fullName) and (Performers.birthday eq performer.birthday) }) {
+            it[Performers.groupId] = newGroupId.value
+        }
     }
 
     fun addPerformer(performer: PerformerOut) = transaction {
