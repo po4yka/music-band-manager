@@ -304,7 +304,7 @@ function updateTable(tableName) {
             });
             sendRequest("GET", "/api/v1/avgageless", "", true, (text) => {
                 console.log("Callback for GET to /avgageless");
-                const avgAgeLessGroups = JSON.parse(text)[0];
+                const avgAgeLessGroups = JSON.parse(text);
                 console.log(avgAgeLessGroups);
                 const header = document.createElement('h5');
                 header.innerText = "Groups with average age < 45";
