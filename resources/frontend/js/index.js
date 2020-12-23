@@ -298,9 +298,24 @@ function updateTable(tableName) {
                 const header = document.createElement('h5');
                 header.innerText = "Yougest singer in all groups";
                 infoModalBody.append(header);
-                const p = document.createElement('h5');
+                const p = document.createElement('p');
                 p.innerText = `${youngestArtist.fullName} from ${youngestArtist.groupName}`;
                 infoModalBody.append(p);
+            });
+            sendRequest("GET", "/api/v1/avgageless", "", true, (text) => {
+                console.log("Callback for GET to /avgageless");
+                const avgAgeLessGroups = JSON.parse(text)[0];
+                console.log(avgAgeLessGroups);
+                const header = document.createElement('h5');
+                header.innerText = "Groups with average age < 45";
+                infoModalBody.append(header);
+                const ul = document.createElement('ul');
+                infoModalBody.append(ul);
+                for (let el of avgAgeLessGroups) {
+                    let li = document.createElement('li');
+                    li.textContent = el.name;
+                    ul.append(li);
+                }
             });
             break;
     }

@@ -56,6 +56,28 @@ class GroupService {
             ) }
     }
 
+    fun getAvgAgeLower() = transaction {
+        TransactionManager.current().exec(
+            "SELECT group_name " +
+                "FROM ( " +
+                "SELECT group_name, date_part('year', age(p.birthday::date)) as avg_age " +
+                "FROM groups " +
+                "INNER JOIN performers p on groups.id = p.group_id " +
+                "GROUP BY groups.group_name, p.birthday " +
+                ") AS A " +
+                "GROUP BY A.group_name " +
+                "HAVING SUM(A.avg_age) / COUNT(group_name) < 45;"
+        ) {
+            rc ->
+            val result = ArrayList<GroupName>()
+            while (rc.next()) {
+                result.add(GroupName(rc.getString("group_name")))
+            }
+            println(result)
+            result
+        }
+    }
+
     fun deleteGroup(groupId: Int) = transaction {
         GroupEntity[groupId].delete()
     }

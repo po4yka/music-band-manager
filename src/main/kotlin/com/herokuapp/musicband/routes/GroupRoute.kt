@@ -37,6 +37,12 @@ fun Route.groups() {
         call.respond(youngestArtist)
     }
 
+    get("avgageless") {
+        println("GET avg age less")
+        val avgAgeLessGroups = groupService.getAvgAgeLower()
+        call.respond(avgAgeLessGroups!!)
+    }
+
     post("group") {
         println("POST /group")
         val json = call.receive<String>()
