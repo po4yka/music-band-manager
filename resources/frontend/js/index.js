@@ -480,7 +480,8 @@ function showTableRowInformation(row) {
             break;
         case "performers":
             infoModalTitle.innerText = `Change performer from ${groupName} group`;
-            const changePerformerGroupSelect = document.getElementById("addModalSelect");
+            infoModalBody.innerHTML += "<select id='changePerformerSelect' class='form-control' required></select>";
+            const changePerformerGroupSelect = document.getElementById("changePerformerSelect");
             fillSelectForAddPerformer(changePerformerGroupSelect);
             changePerformerGroupSelect.innerHTML += `<option>null</option>`;
             break;
