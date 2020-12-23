@@ -498,6 +498,7 @@ function showTableRowInformation(row) {
                 }
                 sendRequest("POST", "/api/v1/chggroup", performerData, true, (text) => {
                     console.log("Callback for POST to /chggroup");
+                    updateTable("performers");
                 });
             });
             break;
