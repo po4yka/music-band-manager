@@ -180,9 +180,11 @@ function updateTable(tableName) {
     currentTableName = tableName;
     const table = document.getElementById('dataTable');
     if (table === null || currentTableName == null) return;
-    changeActiveTopNav();
+    if(currentTableName !== "extra") {
+        changeActiveTopNav();
+        cleanTable(table);
+    }
     changeAddBtnStatus();
-    cleanTable(table);
     switch (currentTableName) {
         case "groups":
             if (groupsData === null) {
