@@ -59,6 +59,11 @@ fun HTML.index() {
                 onClick = """updateTable("concerts");"""
                 +"Concerts"
             }
+            unsafe {
+                +"""
+                    <a id="extraNav" onClick="updateTable('extra');" data-toggle="modal" data-target="#addModal">Extra</a>
+                """.trimIndent()
+            }
         }
         unsafe {
             +"""

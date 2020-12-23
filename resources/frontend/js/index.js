@@ -265,6 +265,15 @@ function updateTable(tableName) {
                 generateTableHead(table, concertTblHeader, 7);
             }
             break;
+        case "extra":
+            const addBtn = document.getElementById("addBtnInModal");
+            addBtn.style.display = "none";
+
+            const infoModalBody = document.getElementById("addModalBody");
+            infoModalBody.innerHTML = "";
+            const infoModalTitle = document.getElementById("addModalTitleLabel");
+            infoModalTitle.innerText = "Extra information";
+            break;
     }
 }
 
