@@ -536,7 +536,6 @@ function showTableRowInformation(row) {
             infoModalBody.innerHTML += "<select id='changePerformerSelect' class='form-control' required></select>";
             const changePerformerGroupSelect = document.getElementById("changePerformerSelect");
             fillSelectForAddPerformer(changePerformerGroupSelect);
-            changePerformerGroupSelect.innerHTML += `<option>null</option>`;
 
             const chgBtn = document.createElement("button");
             chgBtn.innerText = "Change";
@@ -551,6 +550,7 @@ function showTableRowInformation(row) {
                 }
                 sendRequest("POST", "/api/v1/chggroup", performerData, true, (text) => {
                     console.log("Callback for POST to /chggroup");
+                    console.log(text);
                     updateTable("performers");
                 });
             });
