@@ -298,7 +298,7 @@ function updateTable(tableName) {
                 const header = document.createElement('h5');
                 header.innerText = "Yougest singer in all groups";
                 infoModalBody.append(header);
-                const p = ocument.createElement('h5');
+                const p = document.createElement('h5');
                 p.innerText = `${youngestArtist.fullName} from ${youngestArtist.groupName}`;
                 infoModalBody.append(p);
             });
