@@ -275,6 +275,14 @@ function updateTable(tableName) {
             infoModalBody.innerHTML = "";
             const infoModalTitle = document.getElementById("addModalTitleLabel");
             infoModalTitle.innerText = "Extra information";
+
+            sendRequest("GET", "/api/v1/anniversary", "", true, (text) => {
+                console.log("Callback for GET to /anniversary");
+
+                const anniversaryGroups = JSON.parse(text);
+                console.log(anniversaryGroups);
+            });
+
             break;
     }
 }

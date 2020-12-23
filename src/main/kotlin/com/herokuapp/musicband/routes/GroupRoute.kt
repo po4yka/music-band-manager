@@ -25,6 +25,12 @@ fun Route.groups() {
         call.respond(allBooks)
     }
 
+    get("anniversary") {
+        val anniversaryGroups = groupService.getAnniversaryGroups()
+        println("GET anniversary groups")
+        call.respond(anniversaryGroups!!)
+    }
+
     post("group") {
         println("POST /group")
         val json = call.receive<String>()
