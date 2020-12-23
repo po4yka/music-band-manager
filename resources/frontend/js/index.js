@@ -136,10 +136,9 @@ function generateTableBody(table, tableInfo, columnCount) {
         let tRow = table.insertRow();
         switch (currentTableName) {
             case "groups":
+            case "performers":
                 tRow.setAttribute("data-toggle", "modal");
                 tRow.setAttribute("data-target", "#addModal");
-                break;
-            case "performers":
                 break;
         }
         tRow.onclick = function() {
@@ -371,14 +370,14 @@ function showTableRowInformation(row) {
     const infoModalBody = document.getElementById("addModalBody");
     infoModalBody.innerHTML = "";
     const infoModalTitle = document.getElementById("addModalTitleLabel");
+    const groupName = row.cells[0].innerHTML;
+    console.log(`for ${currentTableName} with name: ${groupName}`);
+    const data = {
+        name: groupName
+    }
     switch (currentTableName) {
         case "groups":
-            const groupName = row.cells[0].innerHTML;
-            console.log(`for ${currentTableName} with name: ${groupName}`);
             infoModalTitle.innerText = `Information about ${groupName}`;
-            const data = {
-                name: groupName
-            }
             sendRequest("POST", "/api/v1/lineup", data, true, (text) => {
                 console.log("Callback for POST to /lineup");
                 const lineupData = JSON.parse(text);
@@ -479,6 +478,10 @@ function showTableRowInformation(row) {
             })
             break;
         case "performers":
+            infoModalTitle.innerText = `Change performer from ${groupName} group`;
+            const addElementSelect = document.getElementById("addModalSelect");
+            fillSelectForAddPerformer(addElementSelect);
+            addElementSelect.innerHTML += `<option>null</option>`;
             break;
     }
 }
