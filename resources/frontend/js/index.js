@@ -269,6 +269,7 @@ function updateTable(tableName) {
 }
 
 function fillSelectForAddPerformer(select) {
+    if (groupsData === null) return;
     for (let performer of groupsData) {
         select.innerHTML += `<option>${performer.groupName}</option>`;
     }
@@ -479,9 +480,9 @@ function showTableRowInformation(row) {
             break;
         case "performers":
             infoModalTitle.innerText = `Change performer from ${groupName} group`;
-            const addElementSelect = document.getElementById("addModalSelect");
-            fillSelectForAddPerformer(addElementSelect);
-            addElementSelect.innerHTML += `<option>null</option>`;
+            const changePerformerGroupSelect = document.getElementById("addModalSelect");
+            fillSelectForAddPerformer(changePerformerGroupSelect);
+            changePerformerGroupSelect.innerHTML += `<option>null</option>`;
             break;
     }
 }
