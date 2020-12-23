@@ -181,10 +181,10 @@ function updateTable(tableName) {
     const table = document.getElementById('dataTable');
     if (table === null || currentTableName == null) return;
     if(currentTableName !== "extra") {
+        changeAddBtnStatus();
         changeActiveTopNav();
         cleanTable(table);
     }
-    changeAddBtnStatus();
     switch (currentTableName) {
         case "groups":
             if (groupsData === null) {
