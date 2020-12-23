@@ -291,7 +291,17 @@ function updateTable(tableName) {
                     ul.append(li);
                 }
             });
-
+            sendRequest("GET", "/api/v1/youngestartist", "", true, (text) => {
+                console.log("Callback for GET to /youngestartist");
+                const youngestArtist = JSON.parse(text)[0];
+                console.log(youngestArtist);
+                const header = document.createElement('h5');
+                header.innerText = "Yougest singer in all groups";
+                infoModalBody.append(header);
+                const p = ocument.createElement('h5');
+                p.innerText = `${youngestArtist.fullName} from ${youngestArtist.groupName}`;
+                infoModalBody.append(p);
+            });
             break;
     }
 }
@@ -377,7 +387,7 @@ function addNewElementRequest() {
             const performerData = {
                 fullName: performerName.value,
                 birthday: {year: birthdaySplit[0], month: birthdaySplit[1], day: birthdaySplit[2]},
-                role: performerRole.value,
+                role: performerRole.value.toLowerCase(),
                 groupName: performerGroup.value
             }
             sendRequest("POST", "/api/v1/performer", performerData, true, (text) => {

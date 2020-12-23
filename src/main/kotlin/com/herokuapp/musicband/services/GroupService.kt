@@ -3,8 +3,12 @@ package com.herokuapp.musicband.services
 import com.herokuapp.musicband.data.Group
 import com.herokuapp.musicband.data.GroupEntity
 import com.herokuapp.musicband.data.GroupName
+import com.herokuapp.musicband.data.GroupPerformer
 import com.herokuapp.musicband.data.Groups
+import com.herokuapp.musicband.data.Performers
+import org.jetbrains.exposed.sql.JoinType
 import org.jetbrains.exposed.sql.SortOrder
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -38,6 +42,18 @@ class GroupService {
             println(result)
             result
         }
+    }
+
+    fun getYoungestArtist() = transaction {
+        Groups.join(Performers, JoinType.INNER, additionalConstraint = { Performers.groupId eq Groups.id })
+            .slice(Performers.fullName, Groups.groupName)
+            .select { Performers.role eq "singer" }
+            .orderBy(Performers.birthday, SortOrder.DESC)
+            .limit(1)
+            .map { GroupPerformer(
+                it[Groups.groupName],
+                it[Performers.fullName]
+            ) }
     }
 
     fun deleteGroup(groupId: Int) = transaction {

@@ -31,6 +31,12 @@ fun Route.groups() {
         call.respond(anniversaryGroups!!)
     }
 
+    get("youngestartist") {
+        println("GET youngest artist")
+        val youngestArtist = groupService.getYoungestArtist()
+        call.respond(youngestArtist)
+    }
+
     post("group") {
         println("POST /group")
         val json = call.receive<String>()

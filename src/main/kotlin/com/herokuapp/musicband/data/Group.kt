@@ -43,3 +43,8 @@ data class Group(
 data class GroupName(
     val name: String
 )
+
+data class GroupPerformer(
+    val groupName: String,
+    val fullName: String
+)
