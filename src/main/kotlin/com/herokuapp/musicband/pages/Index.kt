@@ -61,7 +61,7 @@ fun HTML.index() {
             }
             unsafe {
                 +"""
-                    <a id="extraNav" onClick="updateTable('extra');" data-toggle="modal" data-target="#addModal">Extra</a>
+                    <a id="extraNav" href="#extra" onClick="updateTable('extra');" data-toggle="modal" data-target="#addModal">Extra</a>
                 """.trimIndent()
             }
         }
