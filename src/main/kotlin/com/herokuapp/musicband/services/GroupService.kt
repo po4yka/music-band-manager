@@ -33,7 +33,7 @@ class GroupService {
         ) { rc ->
             val result = ArrayList<GroupName>()
             while (rc.next()) {
-                result.add(GroupName(rc.getString("groups.group_name")))
+                result.add(GroupName(rc.getString("group_name")))
             }
             println(result)
             result
